@@ -51,52 +51,6 @@ const MARKER_OFFSET = 64;
 const MARKER_GAP = 16; // Small gap below the button
 const START_MARKER_GAP = 32; // Gap below the button for the first marker
 
-// Sound effects configuration
-const SOUNDS = {
-  markerHover: "/sounds/hover.mp3",
-  markerClick: "/sounds/click.mp3",
-  scroll: "/sounds/scroll.mp3",
-} as const;
-
-// Sound manager hook
-function useSoundManager() {
-  const [isMuted, setIsMuted] = useState(true);
-  const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
-  );
-
-  useEffect(() => {
-    // Initialize audio elements
-    Object.entries(SOUNDS).forEach(([key, src]) => {
-      const audio = new Audio(src);
-      audio.preload = "auto";
-      audio.volume = 0.3; // Set default volume to 30%
-      sounds.current[key as keyof typeof SOUNDS] = audio;
-    });
-
-    // Cleanup
-    return () => {
-      Object.values(sounds.current).forEach((audio) => {
-        audio.pause();
-        audio.src = "";
-      });
-    };
-  }, []);
-
-  const play = (sound: keyof typeof SOUNDS) => {
-    if (isMuted) return;
-    const audio = sounds.current[sound];
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {
-        // Ignore autoplay errors
-      });
-    }
-  };
-
-  return { play, isMuted, setIsMuted };
-}
-
 export default function BlueprintRoute() {
   const [sectionCenters, setSectionCenters] = useState<number[]>([]);
   const [active, setActive] = useState(0);
@@ -112,7 +66,6 @@ export default function BlueprintRoute() {
     x: number;
     y: number;
   }>({ show: false, index: -1, x: 0, y: 0 });
-  const { play, isMuted, setIsMuted } = useSoundManager();
 
   // Set mounted state
   useEffect(() => {
@@ -309,59 +262,6 @@ export default function BlueprintRoute() {
 
   return (
     <>
-      {/* Sound Toggle Button */}
-      {isMounted &&
-        createPortal(
-          <motion.button
-            className="fixed bottom-4 right-4 z-50 bg-card-bg border border-card-border rounded-full p-2 shadow-lg hover:bg-card-hover transition-colors"
-            onClick={() => setIsMuted(!isMuted)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label={isMuted ? "Unmute sound effects" : "Mute sound effects"}
-          >
-            {isMuted ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-text-secondary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-text-secondary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                />
-              </svg>
-            )}
-          </motion.button>,
-          document.body
-        )}
-
       <svg
         ref={svgRef}
         width={SVG_WIDTH}
@@ -428,27 +328,6 @@ export default function BlueprintRoute() {
             <stop offset="0%" stopColor="#fbbf24" stopOpacity="1" />
             <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.5" />
           </radialGradient>
-
-          {/* Particle effect for active section */}
-          <filter
-            id="particleGlow"
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
-          >
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8"
-              result="glow"
-            />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         {/* Background path with enhanced styling */}
@@ -478,51 +357,9 @@ export default function BlueprintRoute() {
           style={{ opacity: 0.8 }}
         />
 
-        {/* Interactive path particles */}
-        <motion.g>
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.circle
-              key={i}
-              r={2}
-              fill="#3b82f6"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                offsetDistance: [`${i * 5}%`, `${i * 5 + 100}%`],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: i * 0.1,
-                ease: "linear",
-              }}
-              style={{
-                offsetPath: `path("${pathD}")`,
-              }}
-            />
-          ))}
-        </motion.g>
-
         {/* Markers with enhanced animations */}
         {markerPoints.map((pt, i) => (
           <g key={SECTIONS[i].id} style={{ pointerEvents: "auto" }}>
-            {/* Marker glow effect */}
-            {active === i && (
-              <motion.circle
-                cx={pt.x}
-                cy={pt.y}
-                r={MARKER_RADIUS * 1.5}
-                fill={SECTIONS[i].color}
-                filter="url(#particleGlow)"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 0.3, scale: 1 }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-            )}
             <motion.circle
               ref={(el) => (markerRefs.current[i] = el)}
               cx={pt.x}
@@ -533,13 +370,11 @@ export default function BlueprintRoute() {
               strokeWidth={2}
               style={{ cursor: "pointer" }}
               onClick={() => {
-                play("markerClick");
                 document
                   .getElementById(SECTIONS[i].id)
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
               onMouseEnter={(e) => {
-                play("markerHover");
                 const rect = e.currentTarget.getBoundingClientRect();
                 setTooltipState({
                   show: true,
@@ -564,7 +399,6 @@ export default function BlueprintRoute() {
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
-                  play("markerClick");
                   document
                     .getElementById(SECTIONS[i].id)
                     ?.scrollIntoView({ behavior: "smooth" });
@@ -582,19 +416,6 @@ export default function BlueprintRoute() {
           }}
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         >
-          {/* Traveler trail effect */}
-          <motion.circle
-            r={TRAVELER_RADIUS * 1.5}
-            fill={SECTIONS[active].color}
-            filter="url(#glow)"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.2, scale: 1 }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
           <motion.circle
             r={TRAVELER_RADIUS}
             fill="url(#travelerGradient)"

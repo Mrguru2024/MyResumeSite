@@ -143,7 +143,7 @@ export default function About() {
               layout
             >
               <motion.div
-                className="relative w-full"
+                className="absolute inset-0 w-full"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
@@ -152,11 +152,9 @@ export default function About() {
                 layout
               >
                 {/* Card Front */}
-                <motion.button
-                  type="button"
-                  aria-pressed={isFlipped}
+                <motion.div
                   className={cn(
-                    "w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10 select-none transition-transform duration-300",
+                    "absolute w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10",
                     isFlipped && "pointer-events-none opacity-0"
                   )}
                   style={{
@@ -166,8 +164,6 @@ export default function About() {
                       : undefined,
                     borderColor: isActive ? "#10b981" : "#e5e7eb",
                     transition: "border-color 0.4s, box-shadow 0.4s",
-                    cursor: "pointer",
-                    backfaceVisibility: "hidden",
                   }}
                   initial={{ opacity: 1 }}
                   animate={{ opacity: isFlipped ? 0 : 1 }}
@@ -175,50 +171,31 @@ export default function About() {
                   tabIndex={0}
                   aria-label="About card front"
                   layout
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setIsFlipped((f) => !f)}
                 >
-                  {/* Avatar with drop shadow, perfectly centered */}
-                  <div
+                  {/* Avatar with pulse/shine when active */}
+                  <motion.div
                     className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-700 border-4 border-white shadow-lg mb-4 sm:mb-6 flex items-center justify-center overflow-hidden"
-                    style={{ boxShadow: "0 4px 24px 0 #10b98144" }}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{
+                      scale: isActive ? [1, 1.08, 1] : 1,
+                      opacity: 1,
+                      boxShadow: isActive
+                        ? [
+                            "0 0 0 0 #10b98155",
+                            "0 0 32px 8px #10b98155",
+                            "0 0 0 0 #10b98155",
+                          ]
+                        : "0 0 0 0 #10b98155",
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: isActive ? Infinity : 0,
+                      ease: "easeInOut",
+                    }}
                   >
                     {/* Replace with actual avatar image if available */}
-                    <svg
-                      viewBox="0 0 64 64"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-16 h-16 sm:w-20 sm:h-20"
-                    >
-                      <circle cx="32" cy="32" r="32" fill="url(#avatarGrad)" />
-                      <defs>
-                        <linearGradient
-                          id="avatarGrad"
-                          x1="0"
-                          y1="0"
-                          x2="64"
-                          y2="64"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop stopColor="#34d399" />
-                          <stop offset="1" stopColor="#2563eb" />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M32 34c-7.732 0-14 6.268-14 14v2h28v-2c0-7.732-6.268-14-14-14z"
-                        fill="#2563eb"
-                        fillOpacity=".2"
-                      />
-                      <circle
-                        cx="32"
-                        cy="24"
-                        r="10"
-                        fill="#2563eb"
-                        fillOpacity=".3"
-                      />
-                    </svg>
-                  </div>
+                    <span className="text-4xl sm:text-5xl md:text-6xl">👤</span>
+                  </motion.div>
                   {/* Divider */}
                   <motion.div
                     className="w-16 sm:w-20 md:w-24 h-1 rounded-full bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 mb-4 sm:mb-6"
@@ -244,20 +221,18 @@ export default function About() {
                     and hands-on expertise.
                   </motion.p>
                   <motion.span
-                    className="mt-2 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide pb-6"
+                    className="mt-2 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.7, duration: 0.5 }}
                   >
                     (Click or tap to reveal more)
                   </motion.span>
-                </motion.button>
+                </motion.div>
                 {/* Card Back */}
-                <motion.button
-                  type="button"
-                  aria-pressed={!isFlipped}
+                <motion.div
                   className={cn(
-                    "w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl rotate-y-180 z-10 select-none transition-transform duration-300",
+                    "absolute w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl rotate-y-180 z-10",
                     !isFlipped && "pointer-events-none opacity-0"
                   )}
                   style={{
@@ -267,9 +242,6 @@ export default function About() {
                       : undefined,
                     borderColor: isActive ? "#10b981" : "#e5e7eb",
                     transition: "border-color 0.4s, box-shadow 0.4s",
-                    cursor: "pointer",
-                    backfaceVisibility: "hidden",
-                    transform: "rotateY(180deg)",
                   }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isFlipped ? 1 : 0 }}
@@ -277,9 +249,6 @@ export default function About() {
                   tabIndex={0}
                   aria-label="About card back"
                   layout
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setIsFlipped((f) => !f)}
                 >
                   <motion.h3
                     className="text-lg sm:text-xl md:text-2xl font-extrabold text-text-primary mb-4 text-center drop-shadow"
@@ -312,15 +281,23 @@ export default function About() {
                     systems that solve real-world problems.
                   </motion.p>
                   <motion.span
-                    className="mt-4 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide text-center pb-6"
+                    className="mt-4 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.5 }}
                   >
                     (Click or tap to flip back)
                   </motion.span>
-                </motion.button>
+                </motion.div>
               </motion.div>
+              {/* Clickable area for flipping only covers the card */}
+              <button
+                className="absolute inset-0 w-full h-full z-20 bg-transparent border-0 cursor-pointer focus:outline-none"
+                aria-label="Flip about card"
+                tabIndex={0}
+                onClick={() => setIsFlipped((f) => !f)}
+                style={{ background: "none" }}
+              />
             </motion.div>
           </div>
         </motion.div>

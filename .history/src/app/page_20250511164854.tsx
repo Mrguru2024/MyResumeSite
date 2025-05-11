@@ -7,8 +7,7 @@ import Portfolio from "@/components/sections/Portfolio";
 import BlueprintRoute from "@/components/ui/BlueprintRoute";
 import { motion } from "framer-motion";
 import { ErrorBoundary } from "react-error-boundary";
-import { useState } from "react";
-import { ActiveSectionContext } from "@/context/ActiveSectionContext";
+import { createContext, useState, useEffect } from "react";
 
 // Debug imports
 console.log("Hero:", Hero);
@@ -16,6 +15,12 @@ console.log("About:", About);
 console.log("Skills:", Skills);
 console.log("Experience:", Experience);
 console.log("Portfolio:", Portfolio);
+
+// Create context for active section
+export const ActiveSectionContext = createContext({
+  active: 0,
+  setActive: (i: number) => {},
+});
 
 function ErrorFallback({
   error,

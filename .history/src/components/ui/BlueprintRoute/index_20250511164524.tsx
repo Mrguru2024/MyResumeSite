@@ -428,27 +428,6 @@ export default function BlueprintRoute() {
             <stop offset="0%" stopColor="#fbbf24" stopOpacity="1" />
             <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.5" />
           </radialGradient>
-
-          {/* Particle effect for active section */}
-          <filter
-            id="particleGlow"
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
-          >
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8"
-              result="glow"
-            />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
         {/* Background path with enhanced styling */}
@@ -478,51 +457,9 @@ export default function BlueprintRoute() {
           style={{ opacity: 0.8 }}
         />
 
-        {/* Interactive path particles */}
-        <motion.g>
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.circle
-              key={i}
-              r={2}
-              fill="#3b82f6"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                offsetDistance: [`${i * 5}%`, `${i * 5 + 100}%`],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: i * 0.1,
-                ease: "linear",
-              }}
-              style={{
-                offsetPath: `path("${pathD}")`,
-              }}
-            />
-          ))}
-        </motion.g>
-
-        {/* Markers with enhanced animations */}
+        {/* Markers with enhanced animations and sound effects */}
         {markerPoints.map((pt, i) => (
           <g key={SECTIONS[i].id} style={{ pointerEvents: "auto" }}>
-            {/* Marker glow effect */}
-            {active === i && (
-              <motion.circle
-                cx={pt.x}
-                cy={pt.y}
-                r={MARKER_RADIUS * 1.5}
-                fill={SECTIONS[i].color}
-                filter="url(#particleGlow)"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 0.3, scale: 1 }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-            )}
             <motion.circle
               ref={(el) => (markerRefs.current[i] = el)}
               cx={pt.x}
@@ -582,19 +519,6 @@ export default function BlueprintRoute() {
           }}
           transition={{ type: "spring", stiffness: 100, damping: 30 }}
         >
-          {/* Traveler trail effect */}
-          <motion.circle
-            r={TRAVELER_RADIUS * 1.5}
-            fill={SECTIONS[active].color}
-            filter="url(#glow)"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.2, scale: 1 }}
-            transition={{
-              duration: 1,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
           <motion.circle
             r={TRAVELER_RADIUS}
             fill="url(#travelerGradient)"

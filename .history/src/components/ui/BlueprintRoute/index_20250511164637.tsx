@@ -58,6 +58,11 @@ const SOUNDS = {
   scroll: "/sounds/scroll.mp3",
 } as const;
 
+// Mini-map configuration
+const MINIMAP_SCALE = 0.15; // Scale factor for the mini-map
+const MINIMAP_WIDTH = SVG_WIDTH * MINIMAP_SCALE;
+const MINIMAP_HEIGHT = 200; // Fixed height for mini-map
+
 // Sound manager hook
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
@@ -113,6 +118,8 @@ export default function BlueprintRoute() {
     y: number;
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, setIsMuted } = useSoundManager();
+  const [showMinimap, setShowMinimap] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   // Set mounted state
   useEffect(() => {
@@ -303,6 +310,17 @@ export default function BlueprintRoute() {
   // Debug: Log SVG height and path data
   console.log("[BlueprintRoute] svgHeight:", svgHeight, "pathD:", pathD);
 
+  // Check screen size for mini-map
+  useEffect(() => {
+    if (!isMounted) return;
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1280); // Show mini-map on xl screens
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, [isMounted]);
+
   if (!isMounted) {
     return null;
   }
@@ -359,6 +377,75 @@ export default function BlueprintRoute() {
               </svg>
             )}
           </motion.button>,
+          document.body
+        )}
+
+      {/* Mini-map for large screens */}
+      {isMounted &&
+        isLargeScreen &&
+        createPortal(
+          <motion.div
+            className="fixed right-8 top-1/2 -translate-y-1/2 z-40 bg-card-bg/80 backdrop-blur-sm border border-card-border rounded-lg p-2 shadow-lg"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div
+              className="relative"
+              style={{ width: MINIMAP_WIDTH, height: MINIMAP_HEIGHT }}
+            >
+              {/* Mini-map path */}
+              <svg
+                width={MINIMAP_WIDTH}
+                height={MINIMAP_HEIGHT}
+                viewBox={`0 0 ${SVG_WIDTH} ${svgHeight}`}
+                preserveAspectRatio="xMidYMid meet"
+                className="opacity-50"
+              >
+                <path
+                  d={pathD}
+                  fill="none"
+                  stroke="url(#pathGradient)"
+                  strokeWidth={2}
+                  strokeDasharray="4 4"
+                />
+                {/* Mini-map markers */}
+                {markerPoints.map((pt, i) => (
+                  <circle
+                    key={SECTIONS[i].id}
+                    cx={pt.x}
+                    cy={pt.y}
+                    r={MARKER_RADIUS * MINIMAP_SCALE}
+                    fill={SECTIONS[i].color}
+                    stroke="#fff"
+                    strokeWidth={1}
+                  />
+                ))}
+                {/* Mini-map traveler */}
+                <circle
+                  cx={traveler.x}
+                  cy={traveler.y}
+                  r={TRAVELER_RADIUS * MINIMAP_SCALE}
+                  fill="url(#travelerGradient)"
+                  stroke="#fff"
+                  strokeWidth={1}
+                />
+              </svg>
+              {/* Viewport indicator */}
+              <motion.div
+                className="absolute border-2 border-blue-500 rounded-lg pointer-events-none"
+                style={{
+                  width: MINIMAP_WIDTH,
+                  height: (MINIMAP_HEIGHT * window.innerHeight) / svgHeight,
+                  y: (scrollY / svgHeight) * MINIMAP_HEIGHT,
+                }}
+                animate={{
+                  y: (scrollY / svgHeight) * MINIMAP_HEIGHT,
+                }}
+                transition={{ type: "spring", stiffness: 100, damping: 30 }}
+              />
+            </div>
+          </motion.div>,
           document.body
         )}
 

@@ -143,7 +143,7 @@ export default function About() {
               layout
             >
               <motion.div
-                className="relative w-full"
+                className="absolute inset-0 w-full"
                 style={{
                   transformStyle: "preserve-3d",
                   transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
@@ -156,7 +156,7 @@ export default function About() {
                   type="button"
                   aria-pressed={isFlipped}
                   className={cn(
-                    "w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10 select-none transition-transform duration-300",
+                    "absolute w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10 select-none transition-transform duration-300",
                     isFlipped && "pointer-events-none opacity-0"
                   )}
                   style={{
@@ -167,7 +167,6 @@ export default function About() {
                     borderColor: isActive ? "#10b981" : "#e5e7eb",
                     transition: "border-color 0.4s, box-shadow 0.4s",
                     cursor: "pointer",
-                    backfaceVisibility: "hidden",
                   }}
                   initial={{ opacity: 1 }}
                   animate={{ opacity: isFlipped ? 0 : 1 }}
@@ -244,7 +243,7 @@ export default function About() {
                     and hands-on expertise.
                   </motion.p>
                   <motion.span
-                    className="mt-2 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide pb-6"
+                    className="mt-2 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide pb-2 sm:pb-4 md:pb-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.7, duration: 0.5 }}
@@ -257,7 +256,7 @@ export default function About() {
                   type="button"
                   aria-pressed={!isFlipped}
                   className={cn(
-                    "w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl rotate-y-180 z-10 select-none transition-transform duration-300",
+                    "absolute w-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl rotate-y-180 z-10 select-none transition-transform duration-300",
                     !isFlipped && "pointer-events-none opacity-0"
                   )}
                   style={{
@@ -268,8 +267,6 @@ export default function About() {
                     borderColor: isActive ? "#10b981" : "#e5e7eb",
                     transition: "border-color 0.4s, box-shadow 0.4s",
                     cursor: "pointer",
-                    backfaceVisibility: "hidden",
-                    transform: "rotateY(180deg)",
                   }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isFlipped ? 1 : 0 }}
@@ -312,7 +309,7 @@ export default function About() {
                     systems that solve real-world problems.
                   </motion.p>
                   <motion.span
-                    className="mt-4 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide text-center pb-6"
+                    className="mt-4 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide text-center pb-2 sm:pb-4 md:pb-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.5 }}
