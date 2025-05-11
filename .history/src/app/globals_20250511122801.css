@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Background Colors */
+  --background-dark: rgb(17, 24, 39);
+  --background-black: rgb(0, 0, 0);
+
+  /* Text Colors */
+  --text-primary: rgb(255, 255, 255);
+  --text-secondary: rgb(156, 163, 175);
+  --text-accent: rgb(59, 130, 246);
+
+  /* Card Colors */
+  --card-bg: rgb(31, 41, 55);
+  --card-border: rgb(75, 85, 99);
+  --card-hover: rgb(55, 65, 81);
+
+  /* Button Colors */
+  --button-primary: rgb(37, 99, 235);
+  --button-hover: rgb(29, 78, 216);
+
+  /* Skill Category Colors */
+  --skill-dev: rgb(59, 130, 246);
+  --skill-tech: rgb(16, 185, 129);
+  --skill-voltage: rgb(245, 158, 11);
+  --skill-leadership: rgb(139, 92, 246);
+  --skill-repair: rgb(239, 68, 68);
+}
+
+@layer base {
+  body {
+    color: var(--text-primary);
+    background: linear-gradient(
+      to bottom,
+      var(--background-dark),
+      var(--background-black)
+    );
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}

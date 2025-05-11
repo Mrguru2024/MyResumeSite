@@ -1,0 +1,11 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  turbopack: {
+    rules: {
+      // Add any custom Turbopack rules here
+    },
+  },
+};
+
+export default nextConfig;
