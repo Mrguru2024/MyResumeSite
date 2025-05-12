@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const EXPERIENCES = [
   {
-    title: "Electronic Repair Technician & Locksmith",
+    title: "Electronic Repair Technician",
     company: "M.E.T Repairs",
     dates: "July 2018 – Present",
     responsibilities: [
@@ -15,9 +15,6 @@ const EXPERIENCES = [
       "For complex circuit board failures, I performed component-level troubleshooting and repairs, ensuring long-term reliability.",
       "When faulty parts threatened device performance, I used specialized tools to expertly solder and replace components, extending device lifespan.",
       "To prevent recurring issues, I conducted thorough testing and analysis, ensuring every repair met the highest standards of accuracy.",
-      "When clients faced lockouts or security concerns, I provided rapid on-site rekeying, key duplication, and automotive key services, restoring access and peace of mind.",
-      "For property security upgrades, I rekeyed locks, advised on high-security options, and performed non-destructive entry when needed.",
-      "By combining electronic repair and locksmith expertise, I delivered comprehensive solutions that addressed both digital and physical security needs.",
     ],
     color: "skill-fullstack",
   },

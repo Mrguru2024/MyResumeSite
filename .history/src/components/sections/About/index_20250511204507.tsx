@@ -187,14 +187,14 @@ export default function About() {
                 >
                   {/* Avatar with drop shadow, perfectly centered */}
                   <div
-                    className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-700 border-4 border-white shadow-lg mb-4 sm:mb-6 flex items-center justify-center overflow-hidden"
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-700 border-4 border-white shadow-lg mb-4 sm:mb-6 flex items-center justify-center overflow-hidden"
                     style={{ boxShadow: "0 4px 24px 0 #10b98144" }}
                   >
                     <Image
                       src="/profile-image.jpg"
                       alt="Anthony 'Mrguru' Feaster profile photo"
-                      width={176}
-                      height={176}
+                      width={128}
+                      height={128}
                       className="w-full h-full object-cover rounded-full"
                       priority
                     />

@@ -643,7 +643,7 @@ export default function BlueprintRoute() {
                     filter: [
                       "drop-shadow(0 0 8px #fde047)",
                       "drop-shadow(0 0 16px #fbbf24)",
-                      "drop-shadow(0 0 8px #fde047)",
+                      "drop-shadow(0 0 8px #fde047)"
                     ],
                   }}
                   transition={{

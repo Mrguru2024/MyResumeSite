@@ -39,13 +39,6 @@ const SECTIONS = [
     color: "#10b981",
     description: "Featured projects",
   },
-  {
-    id: "portfolio",
-    label: "Portfolio",
-    icon: null, // Will use custom SVG for plug
-    color: "#fbbf24",
-    description: "Portfolio gallery (plugged in!)",
-  },
 ];
 
 const X_LEFT = 80;
@@ -530,200 +523,54 @@ export default function BlueprintRoute() {
                 }}
               />
             )}
-            {/* Custom plug marker for last section */}
-            {i === SECTIONS.length - 1 ? (
-              <motion.g
-                whileHover={{ scale: 1.15 }}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  filter: active === i ? "url(#pulse)" : "none",
-                  scale: active === i ? 1.1 : 1,
-                }}
-                transition={{
-                  scale: { type: "spring", stiffness: 300, damping: 20 },
-                }}
-                style={{ cursor: "pointer" }}
-                onClick={() => {
+            <motion.circle
+              ref={(el) => (markerRefs.current[i] = el)}
+              cx={pt.x}
+              cy={pt.y}
+              r={MARKER_RADIUS}
+              fill={SECTIONS[i].color}
+              stroke="#fff"
+              strokeWidth={2}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                play("markerClick");
+                document
+                  .getElementById(SECTIONS[i].id)
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              onMouseEnter={(e) => {
+                play("markerHover");
+                const rect = e.currentTarget.getBoundingClientRect();
+                setTooltipState({
+                  show: true,
+                  index: i,
+                  x: rect.left + rect.width / 2,
+                  y: rect.top - 10,
+                });
+              }}
+              onMouseLeave={() => {
+                setTooltipState((prev) => ({ ...prev, show: false }));
+              }}
+              whileHover={{ scale: 1.1 }}
+              animate={{
+                filter: active === i ? "url(#pulse)" : "none",
+                scale: active === i ? 1.1 : 1,
+              }}
+              transition={{
+                scale: { type: "spring", stiffness: 300, damping: 20 },
+              }}
+              role="button"
+              aria-label={`Go to ${SECTIONS[i].label} section`}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
                   play("markerClick");
                   document
                     .getElementById(SECTIONS[i].id)
                     ?.scrollIntoView({ behavior: "smooth" });
-                }}
-                onMouseEnter={(e) => {
-                  play("markerHover");
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setTooltipState({
-                    show: true,
-                    index: i,
-                    x: rect.left + rect.width / 2,
-                    y: rect.top - 10,
-                  });
-                }}
-                onMouseLeave={() => {
-                  setTooltipState((prev) => ({ ...prev, show: false }));
-                }}
-                role="button"
-                aria-label={`Go to ${SECTIONS[i].label} section`}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    play("markerClick");
-                    document
-                      .getElementById(SECTIONS[i].id)
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                {/* Glowing background for powered effect */}
-                <motion.circle
-                  cx={pt.x}
-                  cy={pt.y}
-                  r={MARKER_RADIUS * 1.7}
-                  fill="#fde68a"
-                  filter="url(#glow)"
-                  animate={{
-                    opacity: [0.5, 1, 0.5],
-                    scale: [1, 1.08, 1],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ mixBlendMode: "screen" }}
-                />
-                {/* Plug socket base */}
-                <circle
-                  cx={pt.x}
-                  cy={pt.y}
-                  r={MARKER_RADIUS}
-                  fill="#fbbf24"
-                  stroke="#fff"
-                  strokeWidth={2}
-                />
-                <rect
-                  x={pt.x - 10}
-                  y={pt.y - 8}
-                  width={20}
-                  height={16}
-                  rx={4}
-                  fill="#fff"
-                  stroke="#fbbf24"
-                  strokeWidth={2}
-                />
-                <rect
-                  x={pt.x - 4}
-                  y={pt.y - 4}
-                  width={3}
-                  height={8}
-                  rx={1}
-                  fill="#fbbf24"
-                />
-                <rect
-                  x={pt.x + 1}
-                  y={pt.y - 4}
-                  width={3}
-                  height={8}
-                  rx={1}
-                  fill="#fbbf24"
-                />
-                {/* Animated power bolt */}
-                <motion.polygon
-                  points={`${pt.x},${pt.y + 2} ${pt.x - 2},${pt.y + 8} ${
-                    pt.x + 1
-                  },${pt.y + 8} ${pt.x - 1},${pt.y + 14} ${pt.x + 4},${
-                    pt.y + 7.5
-                  } ${pt.x + 1.5},${pt.y + 7.5}`}
-                  fill="#fbbf24"
-                  stroke="#f59e0b"
-                  strokeWidth={0.7}
-                  animate={{
-                    scale: [1, 1.15, 1],
-                    opacity: [1, 0.7, 1],
-                    filter: [
-                      "drop-shadow(0 0 8px #fde047)",
-                      "drop-shadow(0 0 16px #fbbf24)",
-                      "drop-shadow(0 0 8px #fde047)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 1.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-                {/* Spark effect */}
-                <motion.circle
-                  cx={pt.x + 8}
-                  cy={pt.y - 10}
-                  r={2.5}
-                  fill="#fbbf24"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
-                  style={{ filter: "drop-shadow(0 0 8px #fde047)" }}
-                />
-                <motion.circle
-                  cx={pt.x - 8}
-                  cy={pt.y - 12}
-                  r={1.7}
-                  fill="#fbbf24"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.8, 0] }}
-                  transition={{ duration: 1.2, repeat: Infinity, delay: 0.8 }}
-                  style={{ filter: "drop-shadow(0 0 6px #fde047)" }}
-                />
-              </motion.g>
-            ) : (
-              <motion.circle
-                ref={(el) => (markerRefs.current[i] = el)}
-                cx={pt.x}
-                cy={pt.y}
-                r={MARKER_RADIUS}
-                fill={SECTIONS[i].color}
-                stroke="#fff"
-                strokeWidth={2}
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  play("markerClick");
-                  document
-                    .getElementById(SECTIONS[i].id)
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-                onMouseEnter={(e) => {
-                  play("markerHover");
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setTooltipState({
-                    show: true,
-                    index: i,
-                    x: rect.left + rect.width / 2,
-                    y: rect.top - 10,
-                  });
-                }}
-                onMouseLeave={() => {
-                  setTooltipState((prev) => ({ ...prev, show: false }));
-                }}
-                whileHover={{ scale: 1.1 }}
-                animate={{
-                  filter: active === i ? "url(#pulse)" : "none",
-                  scale: active === i ? 1.1 : 1,
-                }}
-                transition={{
-                  scale: { type: "spring", stiffness: 300, damping: 20 },
-                }}
-                role="button"
-                aria-label={`Go to ${SECTIONS[i].label} section`}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    play("markerClick");
-                    document
-                      .getElementById(SECTIONS[i].id)
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              />
-            )}
+                }
+              }}
+            />
           </g>
         ))}
 

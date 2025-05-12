@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const EXPERIENCES = [
   {
-    title: "Electronic Repair Technician & Locksmith",
+    title: "Electronic Repair Technician",
     company: "M.E.T Repairs",
     dates: "July 2018 – Present",
     responsibilities: [
@@ -15,9 +15,6 @@ const EXPERIENCES = [
       "For complex circuit board failures, I performed component-level troubleshooting and repairs, ensuring long-term reliability.",
       "When faulty parts threatened device performance, I used specialized tools to expertly solder and replace components, extending device lifespan.",
       "To prevent recurring issues, I conducted thorough testing and analysis, ensuring every repair met the highest standards of accuracy.",
-      "When clients faced lockouts or security concerns, I provided rapid on-site rekeying, key duplication, and automotive key services, restoring access and peace of mind.",
-      "For property security upgrades, I rekeyed locks, advised on high-security options, and performed non-destructive entry when needed.",
-      "By combining electronic repair and locksmith expertise, I delivered comprehensive solutions that addressed both digital and physical security needs.",
     ],
     color: "skill-fullstack",
   },
@@ -125,17 +122,11 @@ export default function Experience() {
                   )}
                   aria-hidden="true"
                 />
-                <div className="bg-background-dark/90 border border-card-border rounded-xl p-6 shadow-xl backdrop-blur-sm">
+                <div className="bg-card-bg border border-card-border rounded-xl p-6 shadow-lg">
                   <h3
                     className={cn(
-                      "text-xl font-bold mb-1 text-text-primary",
-                      `text-${exp.color}`,
-                      exp.title === "Locksmith | Mobile Locksmith Technician" &&
-                        "text-emerald-500",
-                      exp.title ===
-                        "Technical Repair and Inventory Specialist" &&
-                        "text-blue-500",
-                      exp.title === "Forklift Operator" && "text-yellow-500"
+                      "text-xl font-bold mb-1",
+                      `text-${exp.color}`
                     )}
                   >
                     {exp.title}
@@ -149,7 +140,7 @@ export default function Experience() {
                       {exp.dates}
                     </span>
                   </div>
-                  <ul className="list-disc list-inside text-text-secondary text-[15px] font-medium space-y-1">
+                  <ul className="list-disc list-inside text-text-secondary text-sm space-y-1">
                     {exp.responsibilities.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}

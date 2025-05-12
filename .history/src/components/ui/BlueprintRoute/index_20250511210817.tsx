@@ -574,25 +574,7 @@ export default function BlueprintRoute() {
                   }
                 }}
               >
-                {/* Glowing background for powered effect */}
-                <motion.circle
-                  cx={pt.x}
-                  cy={pt.y}
-                  r={MARKER_RADIUS * 1.7}
-                  fill="#fde68a"
-                  filter="url(#glow)"
-                  animate={{
-                    opacity: [0.5, 1, 0.5],
-                    scale: [1, 1.08, 1],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ mixBlendMode: "screen" }}
-                />
-                {/* Plug socket base */}
+                {/* Plug socket with power icon SVG */}
                 <circle
                   cx={pt.x}
                   cy={pt.y}
@@ -627,8 +609,8 @@ export default function BlueprintRoute() {
                   rx={1}
                   fill="#fbbf24"
                 />
-                {/* Animated power bolt */}
-                <motion.polygon
+                {/* Power bolt */}
+                <polygon
                   points={`${pt.x},${pt.y + 2} ${pt.x - 2},${pt.y + 8} ${
                     pt.x + 1
                   },${pt.y + 8} ${pt.x - 1},${pt.y + 14} ${pt.x + 4},${
@@ -637,41 +619,6 @@ export default function BlueprintRoute() {
                   fill="#fbbf24"
                   stroke="#f59e0b"
                   strokeWidth={0.7}
-                  animate={{
-                    scale: [1, 1.15, 1],
-                    opacity: [1, 0.7, 1],
-                    filter: [
-                      "drop-shadow(0 0 8px #fde047)",
-                      "drop-shadow(0 0 16px #fbbf24)",
-                      "drop-shadow(0 0 8px #fde047)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 1.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-                {/* Spark effect */}
-                <motion.circle
-                  cx={pt.x + 8}
-                  cy={pt.y - 10}
-                  r={2.5}
-                  fill="#fbbf24"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
-                  style={{ filter: "drop-shadow(0 0 8px #fde047)" }}
-                />
-                <motion.circle
-                  cx={pt.x - 8}
-                  cy={pt.y - 12}
-                  r={1.7}
-                  fill="#fbbf24"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 0.8, 0] }}
-                  transition={{ duration: 1.2, repeat: Infinity, delay: 0.8 }}
-                  style={{ filter: "drop-shadow(0 0 6px #fde047)" }}
                 />
               </motion.g>
             ) : (

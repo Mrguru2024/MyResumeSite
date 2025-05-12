@@ -3,7 +3,6 @@ import { useState, useContext, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ActiveSectionContext } from "@/context/ActiveSectionContext";
-import Image from "next/image";
 
 const ABOUT_COLOR = "#10b981";
 
@@ -25,8 +24,9 @@ export default function About() {
       setAutoFlipped(true);
     }, 400);
   } else if (!isActive && autoFlipped) {
-    // Reset the auto-flip state when leaving the section
-    setAutoFlipped(false);
+    // Don't auto-flip back when scrolling away
+    // setIsFlipped(false);
+    // setAutoFlipped(false);
   }
 
   // 3D tilt effect on mouse move
@@ -180,24 +180,47 @@ export default function About() {
                   layout
                   whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    setIsFlipped((f) => !f);
-                    setAutoFlipped(false); // Reset auto-flip state on manual flip
-                  }}
+                  onClick={() => setIsFlipped((f) => !f)}
                 >
                   {/* Avatar with drop shadow, perfectly centered */}
                   <div
-                    className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-700 border-4 border-white shadow-lg mb-4 sm:mb-6 flex items-center justify-center overflow-hidden"
+                    className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-700 border-4 border-white shadow-lg mb-4 sm:mb-6 flex items-center justify-center overflow-hidden"
                     style={{ boxShadow: "0 4px 24px 0 #10b98144" }}
                   >
-                    <Image
-                      src="/profile-image.jpg"
-                      alt="Anthony 'Mrguru' Feaster profile photo"
-                      width={176}
-                      height={176}
-                      className="w-full h-full object-cover rounded-full"
-                      priority
-                    />
+                    {/* Replace with actual avatar image if available */}
+                    <svg
+                      viewBox="0 0 64 64"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-16 h-16 sm:w-20 sm:h-20"
+                    >
+                      <circle cx="32" cy="32" r="32" fill="url(#avatarGrad)" />
+                      <defs>
+                        <linearGradient
+                          id="avatarGrad"
+                          x1="0"
+                          y1="0"
+                          x2="64"
+                          y2="64"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stopColor="#34d399" />
+                          <stop offset="1" stopColor="#2563eb" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M32 34c-7.732 0-14 6.268-14 14v2h28v-2c0-7.732-6.268-14-14-14z"
+                        fill="#2563eb"
+                        fillOpacity=".2"
+                      />
+                      <circle
+                        cx="32"
+                        cy="24"
+                        r="10"
+                        fill="#2563eb"
+                        fillOpacity=".3"
+                      />
+                    </svg>
                   </div>
                   {/* Divider */}
                   <motion.div
@@ -261,10 +284,7 @@ export default function About() {
                   layout
                   whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    setIsFlipped((f) => !f);
-                    setAutoFlipped(false); // Reset auto-flip state on manual flip
-                  }}
+                  onClick={() => setIsFlipped((f) => !f)}
                 >
                   <motion.h3
                     className="text-lg sm:text-xl md:text-2xl font-extrabold text-text-primary mb-4 text-center drop-shadow"
