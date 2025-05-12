@@ -84,24 +84,16 @@ body {
 
 @media (max-width: 400px) and (max-height: 900px) {
   /* Z Fold 4/5 folded tweaks: ensure all content fits and is readable */
-  html,
-  body {
+  html, body {
     font-size: 15px;
   }
   .min-h-screen {
     min-height: 100dvh;
   }
-  .max-w-xl,
-  .max-w-lg,
-  .max-w-5xl,
-  .max-w-6xl,
-  .max-w-3xl,
-  .max-w-4xl {
+  .max-w-xl, .max-w-lg, .max-w-5xl, .max-w-6xl, .max-w-3xl, .max-w-4xl {
     max-width: 98vw !important;
   }
-  .p-8,
-  .py-24,
-  .px-8 {
+  .p-8, .py-24, .px-8 {
     padding: 1.25rem !important;
   }
   .rounded-2xl {
