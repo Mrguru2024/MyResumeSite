@@ -1,4 +1,9 @@
-export type SkillCategory = 'Full Stack Dev' | 'Field Technician' | 'Low Voltage' | 'Leadership' | 'Repair';
+export type SkillCategory =
+  | "Full Stack Dev"
+  | "Field Technician"
+  | "Low Voltage"
+  | "Leadership"
+  | "Repair";
 
 export interface Skill {
   id: string;
@@ -12,4 +17,4 @@ export interface Skill {
 export interface SkillGroup {
   category: SkillCategory;
   skills: Skill[];
-} 
+}

@@ -21,10 +21,10 @@ describe("Experience", () => {
   it("has accessible section and headings", () => {
     render(<Experience />);
     expect(
-      screen.getByRole("region", { name: /Experience/i })
+      screen.getByRole("region", { name: /Experience/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: /Experience/i, level: 2 })
+      screen.getByRole("heading", { name: /Experience/i, level: 2 }),
     ).toBeInTheDocument();
   });
 });

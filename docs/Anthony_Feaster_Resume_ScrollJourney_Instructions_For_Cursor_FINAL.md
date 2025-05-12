@@ -145,28 +145,34 @@ This is not just a resume—it is a showcase of Anthony’s hybrid expertise acr
 ### Key Navigation & Interaction Features
 
 1. **Scroll-Based Transitions**
+
    - Use full viewport-height panels.
    - Transition sections via horizontal or vertical motion.
    - Animate section content into view on scroll (Framer Motion recommended).
 
 2. **Micro-Interactions**
+
    - Hover animations on skill cards, project tiles, and buttons.
    - Icons animate or glow slightly on cursor proximity.
    - Skill proficiency bars or rings that animate into place.
 
 3. **Custom Animated Cursor**
+
    - Cursor changes form when hovering over different content (e.g., code icon over projects, lock icon over locksmithing sections).
    - Optional animated trail or interactive hints.
 
 4. **Viewport Snap Navigation**
+
    - Enable CSS scroll-snap or logic-based viewport snapping for clean transitions.
    - Each section (About, Skills, Experience, Projects, Contact) snaps into view clearly.
 
 5. **Parallax Motion Layers**
+
    - Backgrounds subtly move with scroll.
    - Use depth by offsetting tool icons, code snippets, or gear elements in motion.
 
 6. **Dynamic Scroll Progress**
+
    - Create a vertical or horizontal progress bar.
    - Show current resume/story progress as a percentage or section highlight.
 
@@ -210,26 +216,31 @@ This navigation layer must **engage the user**, **guide them**, and **visually r
 ### 🔧 Development Requirements
 
 #### 1. Scroll-Snap Layout
+
 - Use CSS `scroll-snap-type` or libraries like `locomotive-scroll` for smooth transitions
 - Each section should fill the viewport fully and snap cleanly into place
 
 #### 2. Animated SVG Trail Path
+
 - Create an SVG path line that **draws itself** as the user scrolls
 - Use `Framer Motion` `pathLength` prop or GSAP `drawSVG` plugin
 - Trail should pass through or “connect” each content section
 
 #### 3. Milestone Animations
+
 - For each checkpoint (e.g., “Full Stack Dev”, “Locksmith Lead”, “Low Voltage Tech”):
   - Show a card with: Title, Dates, Description
   - Animate it with: Scale in, Bounce, Fade, or Slide
   - Add optional interaction: hover/click to expand
 
 #### 4. Trail Icon or Cursor Avatar
+
 - Add a visual representation of the user traveling the path:
   - Pulse dot, tech glyph, animated wrench
   - Cursor floats along trail or leaves motion echo
 
 #### 5. Scroll-Progress Indicator
+
 - Implement a sticky indicator (horizontal or vertical)
 - Show % of journey complete or highlight active section
 - Optional: Floating mini-map on large screen devices

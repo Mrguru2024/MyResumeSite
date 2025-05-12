@@ -10,14 +10,20 @@ describe("Hero", () => {
 
     // Check for subtitle
     expect(
-      screen.getByText(/Full Stack Developer \| Locksmith Lead \| Low Voltage Specialist/i)
+      screen.getByText(
+        /Full Stack Developer \| Locksmith Lead \| Low Voltage Specialist/i,
+      ),
     ).toBeInTheDocument();
 
     // Check for tagline
-    expect(screen.getByText(/I fix. I code. I lead. I build what's needed./i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/I fix. I code. I lead. I build what's needed./i),
+    ).toBeInTheDocument();
 
     // Check for CTA button
-    expect(screen.getByRole("button", { name: /Begin Journey/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Begin Journey/i }),
+    ).toBeInTheDocument();
   });
 
   it("has correct accessibility attributes", () => {
@@ -27,4 +33,4 @@ describe("Hero", () => {
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
   });
-}); 
+});

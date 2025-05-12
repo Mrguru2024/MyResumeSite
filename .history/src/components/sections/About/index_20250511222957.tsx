@@ -151,7 +151,7 @@ export default function About() {
               className={cn(
                 "relative flex flex-col items-center justify-center select-none cursor-pointer rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10 transition-transform duration-300 overflow-hidden",
                 "w-full min-w-[18rem] max-w-4xl",
-                isActive ? "border-emerald-500" : "border-gray-200"
+                isActive ? "border-emerald-500" : "border-gray-200",
               )}
               style={{
                 boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",

@@ -33,7 +33,7 @@ export default function SoundToggle() {
       try {
         localStorage.setItem(
           "blueprintroute-muted",
-          newState ? "true" : "false"
+          newState ? "true" : "false",
         );
         // Dispatch a storage event to notify other components
         window.dispatchEvent(
@@ -42,7 +42,7 @@ export default function SoundToggle() {
             newValue: newState ? "true" : "false",
             oldValue: prev ? "true" : "false",
             storageArea: localStorage,
-          })
+          }),
         );
       } catch (error) {
         console.error("Error setting localStorage:", error);

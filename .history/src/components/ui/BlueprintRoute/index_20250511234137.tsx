@@ -110,7 +110,7 @@ const SOUNDS = {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(false);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -151,7 +151,13 @@ function useSoundManager() {
 }
 
 // Add sound toggle button component
-function SoundToggle({ isMuted, setIsMuted }: { isMuted: boolean; setIsMuted: (muted: boolean) => void }) {
+function SoundToggle({
+  isMuted,
+  setIsMuted,
+}: {
+  isMuted: boolean;
+  setIsMuted: (muted: boolean) => void;
+}) {
   return (
     <button
       onClick={() => setIsMuted(!isMuted)}
@@ -159,16 +165,36 @@ function SoundToggle({ isMuted, setIsMuted }: { isMuted: boolean; setIsMuted: (m
       aria-label={isMuted ? "Enable sound" : "Disable sound"}
     >
       {isMuted ? (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-          <line x1="23" y1="9" x2="17" y2="15"/>
-          <line x1="17" y1="9" x2="23" y2="15"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
         </svg>
       )}
     </button>
@@ -191,7 +217,7 @@ export default function BlueprintRoute() {
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, setIsMuted } = useSoundManager();
   const [markerPoints, setMarkerPoints] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
   const [sectionOffsets, setSectionOffsets] = useState<number[]>([]);
   const markerOffset = 40;
@@ -252,17 +278,20 @@ export default function BlueprintRoute() {
   // Update active section and scroll position with improved section detection
   useEffect(() => {
     if (!isMounted) return;
-    
+
     function onScroll() {
       setScrollY(window.scrollY);
       setViewportHeight(window.innerHeight);
-      
+
       // Find current section based on viewport center
       const viewCenter = window.scrollY + window.innerHeight / 2;
       let currentSection = 0;
-      
+
       for (let i = 0; i < sectionOffsets.length - 1; i++) {
-        if (viewCenter >= sectionOffsets[i] && viewCenter < sectionOffsets[i + 1]) {
+        if (
+          viewCenter >= sectionOffsets[i] &&
+          viewCenter < sectionOffsets[i + 1]
+        ) {
           currentSection = i;
           break;
         }
@@ -270,18 +299,18 @@ export default function BlueprintRoute() {
           currentSection = sectionOffsets.length - 1;
         }
       }
-      
+
       // Play sound only when changing sections
       if (currentSection !== lastSection) {
         play("scroll");
         setLastSection(currentSection);
       }
     }
-    
+
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     onScroll();
-    
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -336,8 +365,8 @@ export default function BlueprintRoute() {
       // 2. Other markers: for each section header (excluding hero)
       const sectionHeaders = Array.from(
         document.querySelectorAll(
-          "[data-blueprint-section] h2, [data-blueprint-section] h1"
-        )
+          "[data-blueprint-section] h2, [data-blueprint-section] h1",
+        ),
       );
       sectionHeaders.forEach((header, i) => {
         const rect = header.getBoundingClientRect();
@@ -413,7 +442,7 @@ export default function BlueprintRoute() {
     const end = sectionOffsets[idx + 1] || start + 1;
     const sectionProgress = Math.min(
       1,
-      Math.max(0, (viewCenter - start) / (end - start))
+      Math.max(0, (viewCenter - start) / (end - start)),
     );
 
     // Get the current and next marker points
@@ -464,8 +493,8 @@ export default function BlueprintRoute() {
       setSvgHeight(
         Math.max(
           window.innerHeight,
-          markerPoints[markerPoints.length - 1].y + 200
-        )
+          markerPoints[markerPoints.length - 1].y + 200,
+        ),
       );
     }
   }, [markerPoints]);
@@ -772,10 +801,10 @@ export default function BlueprintRoute() {
           />
         )}
       </svg>
-      
+
       {/* Sound toggle button */}
       <SoundToggle isMuted={isMuted} setIsMuted={setIsMuted} />
-      
+
       {/* Tooltip overlay */}
       {tooltip?.show && (
         <div

@@ -70,7 +70,7 @@ const SOUNDS = {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -122,7 +122,7 @@ export default function BlueprintRoute() {
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, setIsMuted } = useSoundManager();
   const [markerPoints, setMarkerPoints] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
 
   // Set mounted state
@@ -152,7 +152,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -187,7 +187,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -291,8 +291,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -317,7 +317,13 @@ export default function BlueprintRoute() {
   const traveler = getTravelerPos(scrollProgress);
 
   // Tooltip state
-  const [tooltip, setTooltip] = useState<{ show: boolean; x: number; y: number; label: string; description: string } | null>(null);
+  const [tooltip, setTooltip] = useState<{
+    show: boolean;
+    x: number;
+    y: number;
+    label: string;
+    description: string;
+  } | null>(null);
   const markerLabels = [
     { label: "Hero", description: "Start your journey" },
     { label: "About", description: "Get to know me" },
@@ -377,11 +383,31 @@ export default function BlueprintRoute() {
               className={styles.milestone}
               role="button"
               aria-label={markerLabels[i]?.label || "Milestone"}
-              onMouseEnter={e => setTooltip({ show: true, x: pt.x, y: pt.y - 40, label: markerLabels[i]?.label, description: markerLabels[i]?.description })}
+              onMouseEnter={(e) =>
+                setTooltip({
+                  show: true,
+                  x: pt.x,
+                  y: pt.y - 40,
+                  label: markerLabels[i]?.label,
+                  description: markerLabels[i]?.description,
+                })
+              }
               onMouseLeave={() => setTooltip(null)}
-              onFocus={e => setTooltip({ show: true, x: pt.x, y: pt.y - 40, label: markerLabels[i]?.label, description: markerLabels[i]?.description })}
+              onFocus={(e) =>
+                setTooltip({
+                  show: true,
+                  x: pt.x,
+                  y: pt.y - 40,
+                  label: markerLabels[i]?.label,
+                  description: markerLabels[i]?.description,
+                })
+              }
               onBlur={() => setTooltip(null)}
-              onClick={() => document.getElementById(markerLabels[i]?.label?.toLowerCase())?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById(markerLabels[i]?.label?.toLowerCase())
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <motion.circle
                 cx={pt.x}
@@ -390,19 +416,58 @@ export default function BlueprintRoute() {
                 fill="#fbbf24"
                 filter="url(#glow)"
                 animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
                 style={{ mixBlendMode: "screen" }}
               />
-              <rect x={pt.x - 10} y={pt.y - 8} width={20} height={16} rx={4} fill="#fff" stroke="#fbbf24" strokeWidth={2} />
-              <rect x={pt.x - 4} y={pt.y - 4} width={3} height={8} rx={1} fill="#fbbf24" />
-              <rect x={pt.x + 1} y={pt.y - 4} width={3} height={8} rx={1} fill="#fbbf24" />
+              <rect
+                x={pt.x - 10}
+                y={pt.y - 8}
+                width={20}
+                height={16}
+                rx={4}
+                fill="#fff"
+                stroke="#fbbf24"
+                strokeWidth={2}
+              />
+              <rect
+                x={pt.x - 4}
+                y={pt.y - 4}
+                width={3}
+                height={8}
+                rx={1}
+                fill="#fbbf24"
+              />
+              <rect
+                x={pt.x + 1}
+                y={pt.y - 4}
+                width={3}
+                height={8}
+                rx={1}
+                fill="#fbbf24"
+              />
               <motion.polygon
-                points={`${pt.x},${pt.y+2} ${pt.x-2},${pt.y+8} ${pt.x+1},${pt.y+8} ${pt.x-1},${pt.y+14} ${pt.x+4},${pt.y+7.5} ${pt.x+1.5},${pt.y+7.5}`}
+                points={`${pt.x},${pt.y + 2} ${pt.x - 2},${pt.y + 8} ${pt.x + 1},${pt.y + 8} ${pt.x - 1},${pt.y + 14} ${pt.x + 4},${pt.y + 7.5} ${pt.x + 1.5},${pt.y + 7.5}`}
                 fill="#fbbf24"
                 stroke="#f59e0b"
                 strokeWidth={0.7}
-                animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1], filter: ["drop-shadow(0 0 8px #fde047)", "drop-shadow(0 0 16px #fbbf24)", "drop-shadow(0 0 8px #fde047)"] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [1, 0.7, 1],
+                  filter: [
+                    "drop-shadow(0 0 8px #fde047)",
+                    "drop-shadow(0 0 16px #fbbf24)",
+                    "drop-shadow(0 0 8px #fde047)",
+                  ],
+                }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               />
             </g>
           ) : (
@@ -415,17 +480,37 @@ export default function BlueprintRoute() {
               tabIndex={0}
               role="button"
               aria-label={markerLabels[i]?.label || "Milestone"}
-              onMouseEnter={e => setTooltip({ show: true, x: pt.x, y: pt.y - 40, label: markerLabels[i]?.label, description: markerLabels[i]?.description })}
+              onMouseEnter={(e) =>
+                setTooltip({
+                  show: true,
+                  x: pt.x,
+                  y: pt.y - 40,
+                  label: markerLabels[i]?.label,
+                  description: markerLabels[i]?.description,
+                })
+              }
               onMouseLeave={() => setTooltip(null)}
-              onFocus={e => setTooltip({ show: true, x: pt.x, y: pt.y - 40, label: markerLabels[i]?.label, description: markerLabels[i]?.description })}
+              onFocus={(e) =>
+                setTooltip({
+                  show: true,
+                  x: pt.x,
+                  y: pt.y - 40,
+                  label: markerLabels[i]?.label,
+                  description: markerLabels[i]?.description,
+                })
+              }
               onBlur={() => setTooltip(null)}
-              onClick={() => document.getElementById(markerLabels[i]?.label?.toLowerCase())?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById(markerLabels[i]?.label?.toLowerCase())
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
               animate={{ filter: "drop-shadow(0 0 6px #FBBF24)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
-          )
+          ),
         )}
         {/* Tracker orb animated along the path */}
         {traveler && (
@@ -454,9 +539,13 @@ export default function BlueprintRoute() {
         >
           <div className="bg-card-bg border border-card-border rounded-lg px-4 py-2 shadow-lg">
             <div className="flex items-center gap-2">
-              <span className="text-text-primary font-medium">{tooltip.label}</span>
+              <span className="text-text-primary font-medium">
+                {tooltip.label}
+              </span>
             </div>
-            <p className="text-text-secondary text-sm mt-1">{tooltip.description}</p>
+            <p className="text-text-secondary text-sm mt-1">
+              {tooltip.description}
+            </p>
           </div>
         </div>
       )}

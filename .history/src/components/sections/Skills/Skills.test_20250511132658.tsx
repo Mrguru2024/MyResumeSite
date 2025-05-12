@@ -19,15 +19,21 @@ describe("Skills", () => {
 
   it("opens and closes the skill modal on card click", () => {
     render(<Skills />);
-    fireEvent.click(screen.getByRole("button", { name: /View details for React/i }));
+    fireEvent.click(
+      screen.getByRole("button", { name: /View details for React/i }),
+    );
     expect(screen.getByText(/Modern UI development/i)).toBeInTheDocument();
     fireEvent.click(screen.getByLabelText(/Close/i));
-    expect(screen.queryByText(/Modern UI development/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Modern UI development/i),
+    ).not.toBeInTheDocument();
   });
 
   it("has accessible roles and labels", () => {
     render(<Skills />);
     expect(screen.getByRole("button", { name: /All/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /View details for React/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /View details for React/i }),
+    ).toBeInTheDocument();
   });
-}); 
+});

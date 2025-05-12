@@ -44,23 +44,38 @@ export default function Home() {
       {/* Main content */}
       <main className="relative z-10">
         {/* Hero Section (BlueprintRoute is now inside Hero) */}
-        <section id="hero" className="min-h-screen flex items-center justify-center relative">
+        <section
+          id="hero"
+          className="min-h-screen flex items-center justify-center relative"
+        >
           <Hero />
         </section>
         {/* About Section */}
-        <section id="about" className="min-h-screen mt-32 flex items-center justify-center relative">
+        <section
+          id="about"
+          className="min-h-screen mt-32 flex items-center justify-center relative"
+        >
           <About />
         </section>
         {/* Skills Section */}
-        <section id="skills" className="min-h-screen mt-32 flex items-center justify-center relative">
+        <section
+          id="skills"
+          className="min-h-screen mt-32 flex items-center justify-center relative"
+        >
           <Skills />
         </section>
         {/* Experience Section */}
-        <section id="experience" className="min-h-screen mt-32 flex items-center justify-center relative">
+        <section
+          id="experience"
+          className="min-h-screen mt-32 flex items-center justify-center relative"
+        >
           <Experience />
         </section>
         {/* Portfolio Section */}
-        <section id="portfolio" className="min-h-screen mt-32 flex items-center justify-center relative">
+        <section
+          id="portfolio"
+          className="min-h-screen mt-32 flex items-center justify-center relative"
+        >
           <Portfolio />
         </section>
       </main>

@@ -18,12 +18,21 @@ console.log("Portfolio:", Portfolio);
 console.log("BlueprintRoute:", BlueprintRoute);
 console.log("ScrollJourneyNav:", ScrollJourneyNav);
 
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+function ErrorFallback({
+  error,
+  resetErrorBoundary,
+}: {
+  error: Error;
+  resetErrorBoundary: () => void;
+}) {
   return (
     <div role="alert" className="p-4 bg-red-100 text-red-700 rounded">
       <p>Something went wrong:</p>
       <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary} className="mt-2 px-4 py-2 bg-red-500 text-white rounded">
+      <button
+        onClick={resetErrorBoundary}
+        className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+      >
         Try again
       </button>
     </div>
@@ -33,7 +42,7 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetError
 export default function Home() {
   // Debug component rendering
   console.log("Rendering Home component");
-  
+
   return (
     <div className="relative w-full min-h-screen bg-background-dark overflow-x-hidden">
       <ErrorBoundary FallbackComponent={ErrorFallback}>

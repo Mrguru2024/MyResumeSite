@@ -13,8 +13,8 @@ const SECTIONS = [
     description: "Welcome to my journey",
     tooltip: {
       headline: "Start Here",
-      blurb: "Discover a unique blend of tech and hands-on expertise."
-    }
+      blurb: "Discover a unique blend of tech and hands-on expertise.",
+    },
   },
   {
     id: "about",
@@ -24,8 +24,9 @@ const SECTIONS = [
     description: "Get to know me",
     tooltip: {
       headline: "Who am I?",
-      blurb: "A hybrid tech leader and hands-on problem solver. See why my unique background is your next team's advantage."
-    }
+      blurb:
+        "A hybrid tech leader and hands-on problem solver. See why my unique background is your next team's advantage.",
+    },
   },
   {
     id: "skills",
@@ -35,8 +36,9 @@ const SECTIONS = [
     description: "My technical expertise",
     tooltip: {
       headline: "Skills",
-      blurb: "Full-stack, field, and leadership skills. Instantly productive in any environment."
-    }
+      blurb:
+        "Full-stack, field, and leadership skills. Instantly productive in any environment.",
+    },
   },
   {
     id: "experience",
@@ -46,8 +48,9 @@ const SECTIONS = [
     description: "Professional journey",
     tooltip: {
       headline: "Experience",
-      blurb: "Proven results across tech and trades. I deliver, lead, and adapt."
-    }
+      blurb:
+        "Proven results across tech and trades. I deliver, lead, and adapt.",
+    },
   },
   {
     id: "projects",
@@ -57,8 +60,8 @@ const SECTIONS = [
     description: "Featured projects",
     tooltip: {
       headline: "Projects",
-      blurb: "Real-world impact. Explore my most relevant work."
-    }
+      blurb: "Real-world impact. Explore my most relevant work.",
+    },
   },
   {
     id: "portfolio",
@@ -68,8 +71,8 @@ const SECTIONS = [
     description: "Portfolio gallery (plugged in!)",
     tooltip: {
       headline: "Portfolio",
-      blurb: "See my work in action—case studies and outcomes."
-    }
+      blurb: "See my work in action—case studies and outcomes.",
+    },
   },
   {
     id: "contact",
@@ -79,9 +82,10 @@ const SECTIONS = [
     description: "Contact me",
     tooltip: {
       headline: "Contact Me",
-      blurb: "Ready to connect? Let's talk about your needs and how I can help."
-    }
-  }
+      blurb:
+        "Ready to connect? Let's talk about your needs and how I can help.",
+    },
+  },
 ];
 
 const X_LEFT = 80;
@@ -105,7 +109,7 @@ const SOUNDS = {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -156,7 +160,7 @@ export default function BlueprintRoute() {
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, setIsMuted } = useSoundManager();
   const [markerPoints, setMarkerPoints] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
   const [sectionOffsets, setSectionOffsets] = useState<number[]>([]);
   const markerOffset = 40;
@@ -273,8 +277,8 @@ export default function BlueprintRoute() {
       // 2. Other markers: for each section header (excluding hero)
       const sectionHeaders = Array.from(
         document.querySelectorAll(
-          "[data-blueprint-section] h2, [data-blueprint-section] h1"
-        )
+          "[data-blueprint-section] h2, [data-blueprint-section] h1",
+        ),
       );
       sectionHeaders.forEach((header, i) => {
         const rect = header.getBoundingClientRect();
@@ -325,8 +329,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -388,8 +392,8 @@ export default function BlueprintRoute() {
       setSvgHeight(
         Math.max(
           window.innerHeight,
-          markerPoints[markerPoints.length - 1].y + 200
-        )
+          markerPoints[markerPoints.length - 1].y + 200,
+        ),
       );
     }
   }, [markerPoints]);
@@ -575,7 +579,7 @@ export default function BlueprintRoute() {
               animate={{ filter: "drop-shadow(0 0 6px #FBBF24)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             />
-          )
+          ),
         )}
         {/* Tracker orb animated along the path */}
         {traveler && (

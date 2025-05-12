@@ -11,18 +11,18 @@ describe("Hero", () => {
     // Check for subtitle
     expect(
       screen.getByText(
-        /Full Stack Developer \| Locksmith Lead \| Low Voltage Specialist/i
-      )
+        /Full Stack Developer \| Locksmith Lead \| Low Voltage Specialist/i,
+      ),
     ).toBeInTheDocument();
 
     // Check for tagline
     expect(
-      screen.getByText(/I fix. I code. I lead. I build what's needed./i)
+      screen.getByText(/I fix. I code. I lead. I build what's needed./i),
     ).toBeInTheDocument();
 
     // Check for CTA button
     expect(
-      screen.getByRole("button", { name: /Begin Journey/i })
+      screen.getByRole("button", { name: /Begin Journey/i }),
     ).toBeInTheDocument();
   });
 

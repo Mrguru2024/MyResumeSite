@@ -10,7 +10,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Anthony 'Mrguru' Feaster - Interactive Resume",
-  description: "Interactive resume website showcasing Anthony Feaster's skills, experience, and projects",
+  description:
+    "Interactive resume website showcasing Anthony Feaster's skills, experience, and projects",
 };
 
 export default function RootLayout({

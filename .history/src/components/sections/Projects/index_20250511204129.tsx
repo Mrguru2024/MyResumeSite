@@ -9,7 +9,8 @@ import Image from "next/image";
 const FALLBACK_PROJECTS = [
   {
     name: "MyResumeSite",
-    description: "Interactive resume website built with Next.js, React, and Framer Motion",
+    description:
+      "Interactive resume website built with Next.js, React, and Framer Motion",
     language: "TypeScript",
     html_url: "https://github.com/Mrguru2024/MyResumeSite",
     updated_at: "2025-05-11T00:00:00Z",
@@ -24,7 +25,9 @@ const FALLBACK_PROJECTS = [
 export default function Projects() {
   const [projects, setProjects] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedProject, setSelectedProject] = useState<GitHubRepo | null>(null);
+  const [selectedProject, setSelectedProject] = useState<GitHubRepo | null>(
+    null,
+  );
   const [previewError, setPreviewError] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -87,11 +90,18 @@ export default function Projects() {
                         alt={`${project.name} preview`}
                         fill
                         className="object-cover"
-                        onError={() => setPreviewError({ ...previewError, [project.name]: true })}
+                        onError={() =>
+                          setPreviewError({
+                            ...previewError,
+                            [project.name]: true,
+                          })
+                        }
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-emerald-500/20 to-blue-500/20 flex items-center justify-center">
-                        <span className="text-text-secondary text-sm">Preview not available</span>
+                        <span className="text-text-secondary text-sm">
+                          Preview not available
+                        </span>
                       </div>
                     )}
                   </div>

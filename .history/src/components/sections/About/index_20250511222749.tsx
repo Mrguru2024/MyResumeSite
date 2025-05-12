@@ -151,7 +151,7 @@ export default function About() {
               className={cn(
                 "relative flex flex-col items-center justify-center select-none cursor-pointer rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10 transition-transform duration-300 overflow-hidden",
                 "w-full max-w-2xl",
-                isActive ? "border-emerald-500" : "border-gray-200"
+                isActive ? "border-emerald-500" : "border-gray-200",
               )}
               style={{
                 boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -161,7 +161,7 @@ export default function About() {
                 borderColor: isActive ? "#10b981" : "#e5e7eb",
                 transition: "border-color 0.4s, box-shadow 0.4s",
                 perspective: 1200,
-                transformStyle: "preserve-3d"
+                transformStyle: "preserve-3d",
               }}
               tabIndex={0}
               aria-label={isFlipped ? "About card back" : "About card front"}
@@ -220,7 +220,7 @@ export default function About() {
                     opacity: isFlipped ? 0 : 1,
                     zIndex: isFlipped ? 1 : 2,
                     pointerEvents: isFlipped ? "none" : "auto",
-                    rotateY: 0
+                    rotateY: 0,
                   }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="w-full flex flex-col items-center justify-center absolute left-0 top-0"
@@ -251,7 +251,7 @@ export default function About() {
                     opacity: isFlipped ? 1 : 0,
                     zIndex: isFlipped ? 2 : 1,
                     pointerEvents: isFlipped ? "auto" : "none",
-                    rotateY: 0
+                    rotateY: 0,
                   }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="w-full flex flex-col justify-center items-center absolute left-0 top-0"
@@ -272,9 +272,9 @@ export default function About() {
                     transition={{ delay: 0.2, duration: 0.5 }}
                   >
                     As a Full Stack Developer and Field Technician, I combine
-                    technical expertise with practical problem-solving skills. My
-                    experience spans from developing modern web applications to
-                    hands-on locksmith and low voltage work.
+                    technical expertise with practical problem-solving skills.
+                    My experience spans from developing modern web applications
+                    to hands-on locksmith and low voltage work.
                   </motion.p>
                   <motion.p
                     className="text-sm sm:text-base md:text-lg text-text-secondary text-center"
@@ -282,10 +282,10 @@ export default function About() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    I lead teams, manage projects, and deliver solutions that make
-                    a real impact. Whether it's coding, fixing, or building, I'm
-                    passionate about creating efficient, reliable systems that
-                    solve real-world problems.
+                    I lead teams, manage projects, and deliver solutions that
+                    make a real impact. Whether it's coding, fixing, or
+                    building, I'm passionate about creating efficient, reliable
+                    systems that solve real-world problems.
                   </motion.p>
                   <motion.span
                     className="mt-4 text-xs sm:text-sm md:text-base text-emerald-500 font-mono tracking-wide text-center pb-6"

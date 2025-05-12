@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import { fadeInUp } from '@/utils/animations';
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { fadeInUp } from "@/utils/animations";
 
 interface SectionProps {
   id: string;
@@ -11,7 +11,12 @@ interface SectionProps {
   className?: string;
 }
 
-export const Section = ({ id, title, children, className = '' }: SectionProps) => {
+export const Section = ({
+  id,
+  title,
+  children,
+  className = "",
+}: SectionProps) => {
   return (
     <section
       id={id}
@@ -39,4 +44,4 @@ export const Section = ({ id, title, children, className = '' }: SectionProps) =
       </div>
     </section>
   );
-}; 
+};

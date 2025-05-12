@@ -69,7 +69,7 @@ const SOUNDS = {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -148,7 +148,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -183,7 +183,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -283,8 +283,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -366,7 +366,7 @@ export default function BlueprintRoute() {
               </svg>
             )}
           </motion.button>,
-          document.body
+          document.body,
         )}
 
       <svg
@@ -545,9 +545,11 @@ export default function BlueprintRoute() {
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   play("markerClick");
-                  document.getElementById(SECTIONS[i].id)?.scrollIntoView({ behavior: "smooth" });
+                  document
+                    .getElementById(SECTIONS[i].id)
+                    ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                onMouseEnter={e => {
+                onMouseEnter={(e) => {
                   play("markerHover");
                   const rect = e.currentTarget.getBoundingClientRect();
                   setTooltipState({
@@ -558,29 +560,66 @@ export default function BlueprintRoute() {
                   });
                 }}
                 onMouseLeave={() => {
-                  setTooltipState(prev => ({ ...prev, show: false }));
+                  setTooltipState((prev) => ({ ...prev, show: false }));
                 }}
                 role="button"
                 aria-label={`Go to ${SECTIONS[i].label} section`}
                 tabIndex={0}
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     play("markerClick");
-                    document.getElementById(SECTIONS[i].id)?.scrollIntoView({ behavior: "smooth" });
+                    document
+                      .getElementById(SECTIONS[i].id)
+                      ?.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               >
                 {/* Plug socket with power icon SVG */}
-                <circle cx={pt.x} cy={pt.y} r={MARKER_RADIUS} fill="#fbbf24" stroke="#fff" strokeWidth={2} />
-                <rect x={pt.x - 10} y={pt.y - 8} width={20} height={16} rx={4} fill="#fff" stroke="#fbbf24" strokeWidth={2} />
-                <rect x={pt.x - 4} y={pt.y - 4} width={3} height={8} rx={1} fill="#fbbf24" />
-                <rect x={pt.x + 1} y={pt.y - 4} width={3} height={8} rx={1} fill="#fbbf24" />
+                <circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={MARKER_RADIUS}
+                  fill="#fbbf24"
+                  stroke="#fff"
+                  strokeWidth={2}
+                />
+                <rect
+                  x={pt.x - 10}
+                  y={pt.y - 8}
+                  width={20}
+                  height={16}
+                  rx={4}
+                  fill="#fff"
+                  stroke="#fbbf24"
+                  strokeWidth={2}
+                />
+                <rect
+                  x={pt.x - 4}
+                  y={pt.y - 4}
+                  width={3}
+                  height={8}
+                  rx={1}
+                  fill="#fbbf24"
+                />
+                <rect
+                  x={pt.x + 1}
+                  y={pt.y - 4}
+                  width={3}
+                  height={8}
+                  rx={1}
+                  fill="#fbbf24"
+                />
                 {/* Power bolt */}
-                <polygon points={`${pt.x},${pt.y+2} ${pt.x-2},${pt.y+8} ${pt.x+1},${pt.y+8} ${pt.x-1},${pt.y+14} ${pt.x+4},${pt.y+7.5} ${pt.x+1.5},${pt.y+7.5}`} fill="#fbbf24" stroke="#f59e0b" strokeWidth={0.7} />
+                <polygon
+                  points={`${pt.x},${pt.y + 2} ${pt.x - 2},${pt.y + 8} ${pt.x + 1},${pt.y + 8} ${pt.x - 1},${pt.y + 14} ${pt.x + 4},${pt.y + 7.5} ${pt.x + 1.5},${pt.y + 7.5}`}
+                  fill="#fbbf24"
+                  stroke="#f59e0b"
+                  strokeWidth={0.7}
+                />
               </motion.g>
             ) : (
               <motion.circle
-                ref={el => (markerRefs.current[i] = el)}
+                ref={(el) => (markerRefs.current[i] = el)}
                 cx={pt.x}
                 cy={pt.y}
                 r={MARKER_RADIUS}
@@ -590,9 +629,11 @@ export default function BlueprintRoute() {
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   play("markerClick");
-                  document.getElementById(SECTIONS[i].id)?.scrollIntoView({ behavior: "smooth" });
+                  document
+                    .getElementById(SECTIONS[i].id)
+                    ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                onMouseEnter={e => {
+                onMouseEnter={(e) => {
                   play("markerHover");
                   const rect = e.currentTarget.getBoundingClientRect();
                   setTooltipState({
@@ -603,7 +644,7 @@ export default function BlueprintRoute() {
                   });
                 }}
                 onMouseLeave={() => {
-                  setTooltipState(prev => ({ ...prev, show: false }));
+                  setTooltipState((prev) => ({ ...prev, show: false }));
                 }}
                 whileHover={{ scale: 1.1 }}
                 animate={{
@@ -616,10 +657,12 @@ export default function BlueprintRoute() {
                 role="button"
                 aria-label={`Go to ${SECTIONS[i].label} section`}
                 tabIndex={0}
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     play("markerClick");
-                    document.getElementById(SECTIONS[i].id)?.scrollIntoView({ behavior: "smooth" });
+                    document
+                      .getElementById(SECTIONS[i].id)
+                      ?.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               />
@@ -722,7 +765,7 @@ export default function BlueprintRoute() {
               </p>
             </div>
           </motion.div>,
-          document.body
+          document.body,
         )}
     </>
   );

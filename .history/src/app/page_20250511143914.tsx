@@ -9,12 +9,21 @@ import ScrollJourneyNav from "@/components/ui/ScrollJourneyNav";
 import { motion } from "framer-motion";
 import { ErrorBoundary } from "react-error-boundary";
 
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+function ErrorFallback({
+  error,
+  resetErrorBoundary,
+}: {
+  error: Error;
+  resetErrorBoundary: () => void;
+}) {
   return (
     <div role="alert" className="p-4 bg-red-100 text-red-700 rounded">
       <p>Something went wrong:</p>
       <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary} className="mt-2 px-4 py-2 bg-red-500 text-white rounded">
+      <button
+        onClick={resetErrorBoundary}
+        className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+      >
         Try again
       </button>
     </div>

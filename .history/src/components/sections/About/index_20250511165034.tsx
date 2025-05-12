@@ -94,7 +94,7 @@ export default function About() {
               <motion.div
                 className={cn(
                   "absolute inset-0 backface-hidden bg-card-bg border border-card-border rounded-xl p-8 shadow-xl flex flex-col items-center justify-center",
-                  isFlipped && "hidden"
+                  isFlipped && "hidden",
                 )}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -154,7 +154,7 @@ export default function About() {
               <motion.div
                 className={cn(
                   "absolute inset-0 backface-hidden bg-card-bg border border-card-border rounded-xl p-8 shadow-xl rotate-y-180 flex flex-col justify-center",
-                  !isFlipped && "hidden"
+                  !isFlipped && "hidden",
                 )}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}

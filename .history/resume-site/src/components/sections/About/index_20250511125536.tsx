@@ -26,7 +26,7 @@ export default function About() {
             <motion.div
               className={cn(
                 "relative w-full h-[400px] transition-transform duration-500 transform-style-3d",
-                isFlipped && "rotate-y-180"
+                isFlipped && "rotate-y-180",
               )}
               onClick={() => setIsFlipped(!isFlipped)}
               whileHover={{ scale: 1.02 }}
@@ -36,7 +36,7 @@ export default function About() {
               <motion.div
                 className={cn(
                   "absolute inset-0 backface-hidden bg-card rounded-xl p-8 shadow-lg",
-                  isFlipped && "hidden"
+                  isFlipped && "hidden",
                 )}
               >
                 <div className="flex flex-col items-center justify-center h-full text-center">
@@ -57,7 +57,7 @@ export default function About() {
               <motion.div
                 className={cn(
                   "absolute inset-0 backface-hidden bg-card rounded-xl p-8 shadow-lg rotate-y-180",
-                  !isFlipped && "hidden"
+                  !isFlipped && "hidden",
                 )}
               >
                 <div className="h-full flex flex-col justify-center">

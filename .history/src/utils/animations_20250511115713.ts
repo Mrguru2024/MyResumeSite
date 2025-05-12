@@ -1,4 +1,4 @@
-import { Variants } from 'framer-motion';
+import { Variants } from "framer-motion";
 
 export const fadeInUp: Variants = {
   initial: {
@@ -10,7 +10,7 @@ export const fadeInUp: Variants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -23,7 +23,7 @@ export const fadeIn: Variants = {
     opacity: 1,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -46,7 +46,7 @@ export const scaleIn: Variants = {
     opacity: 1,
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
-}; 
+};

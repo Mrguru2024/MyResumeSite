@@ -136,13 +136,19 @@ export default function About() {
             <span className="block sm:inline">Low Voltage Specialist</span>
           </motion.div>
           {/* Card flip container with perspective */}
-          <div className="flex justify-center items-center" style={{ perspective: 1200 }}>
-            <div className="relative w-full max-w-md xl:max-w-lg h-[380px] md:h-[420px] xl:h-[480px]" style={{ perspective: 1200 }}>
+          <div
+            className="flex justify-center items-center"
+            style={{ perspective: 1200 }}
+          >
+            <div
+              className="relative w-full max-w-md xl:max-w-lg h-[380px] md:h-[420px] xl:h-[480px]"
+              style={{ perspective: 1200 }}
+            >
               <motion.div
                 className="absolute inset-0 w-full h-full"
                 style={{
                   transformStyle: "preserve-3d",
-                  transform: `rotateY(${isFlipped ? 180 : 0}deg)`
+                  transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
                 }}
                 transition={{ type: "spring", stiffness: 80, damping: 18 }}
               >
@@ -150,7 +156,7 @@ export default function About() {
                 <motion.div
                   className={cn(
                     "absolute w-full h-full rounded-2xl p-10 md:p-14 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10",
-                    isFlipped && "pointer-events-none opacity-0"
+                    isFlipped && "pointer-events-none opacity-0",
                   )}
                   style={{
                     boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -209,7 +215,8 @@ export default function About() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                   >
-                    A versatile professional bridging the gap between technology and hands-on expertise.
+                    A versatile professional bridging the gap between technology
+                    and hands-on expertise.
                   </motion.p>
                   <motion.span
                     className="mt-2 text-base text-emerald-500 font-mono tracking-wide"
@@ -224,7 +231,7 @@ export default function About() {
                 <motion.div
                   className={cn(
                     "absolute w-full h-full rounded-2xl p-10 md:p-14 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl rotate-y-180",
-                    !isFlipped && "pointer-events-none opacity-0"
+                    !isFlipped && "pointer-events-none opacity-0",
                   )}
                   style={{
                     boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -252,7 +259,10 @@ export default function About() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
                   >
-                    As a Full Stack Developer and Field Technician, I combine technical expertise with practical problem-solving skills. My experience spans from developing modern web applications to hands-on locksmith and low voltage work.
+                    As a Full Stack Developer and Field Technician, I combine
+                    technical expertise with practical problem-solving skills.
+                    My experience spans from developing modern web applications
+                    to hands-on locksmith and low voltage work.
                   </motion.p>
                   <motion.p
                     className="text-lg sm:text-xl text-text-secondary text-center"
@@ -260,7 +270,10 @@ export default function About() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    I lead teams, manage projects, and deliver solutions that make a real impact. Whether it's coding, fixing, or building, I'm passionate about creating efficient, reliable systems that solve real-world problems.
+                    I lead teams, manage projects, and deliver solutions that
+                    make a real impact. Whether it's coding, fixing, or
+                    building, I'm passionate about creating efficient, reliable
+                    systems that solve real-world problems.
                   </motion.p>
                   <motion.span
                     className="mt-4 text-base text-emerald-500 font-mono tracking-wide text-center"

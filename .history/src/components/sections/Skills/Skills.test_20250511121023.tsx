@@ -26,7 +26,7 @@ describe("Skills Component", () => {
     fireEvent.mouseEnter(skillCard!);
 
     expect(
-      screen.getByText(/Building modern, responsive web applications/)
+      screen.getByText(/Building modern, responsive web applications/),
     ).toBeInTheDocument();
   });
 

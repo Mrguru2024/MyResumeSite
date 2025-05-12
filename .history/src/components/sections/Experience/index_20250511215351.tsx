@@ -95,7 +95,10 @@ const EXPERIENCES = [
 
 export default function Experience() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative pt-32" data-blueprint-section>
+    <section
+      className="min-h-screen flex items-center justify-center relative pt-32"
+      data-blueprint-section
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
         <motion.div
           className="w-full max-w-3xl mx-auto"
@@ -121,7 +124,7 @@ export default function Experience() {
                 <span
                   className={cn(
                     "absolute -left-6 top-4 w-6 h-6 rounded-full border-4 border-background-dark",
-                    `bg-${exp.color}`
+                    `bg-${exp.color}`,
                   )}
                   aria-hidden="true"
                 />
@@ -135,7 +138,7 @@ export default function Experience() {
                       exp.title ===
                         "Technical Repair and Inventory Specialist" &&
                         "text-blue-500",
-                      exp.title === "Forklift Operator" && "text-yellow-500"
+                      exp.title === "Forklift Operator" && "text-yellow-500",
                     )}
                   >
                     {exp.title}

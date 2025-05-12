@@ -69,7 +69,7 @@ const SOUNDS = {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -148,7 +148,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -183,7 +183,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -283,8 +283,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -366,7 +366,7 @@ export default function BlueprintRoute() {
               </svg>
             )}
           </motion.button>,
-          document.body
+          document.body,
         )}
 
       <svg
@@ -822,7 +822,7 @@ export default function BlueprintRoute() {
               </p>
             </div>
           </motion.div>,
-          document.body
+          document.body,
         )}
     </>
   );

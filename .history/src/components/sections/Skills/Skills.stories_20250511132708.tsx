@@ -15,4 +15,4 @@ type Story = StoryObj<typeof Skills>;
 
 export const Default: Story = {
   args: {},
-}; 
+};

@@ -10,7 +10,7 @@ describe("About Component", () => {
   it("shows initial front card content", () => {
     render(<About />);
     expect(
-      screen.getByText("Click to learn more about my journey")
+      screen.getByText("Click to learn more about my journey"),
     ).toBeInTheDocument();
   });
 
@@ -21,7 +21,7 @@ describe("About Component", () => {
 
     // Check for content that should be visible after flip
     expect(
-      screen.getByText(/A versatile professional with expertise spanning/)
+      screen.getByText(/A versatile professional with expertise spanning/),
     ).toBeInTheDocument();
   });
 });

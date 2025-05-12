@@ -41,7 +41,7 @@ export default function BlueprintRoute() {
       const offsets = getSectionOffsets();
       const winH = window.innerHeight;
       const idx = offsets.findIndex(
-        (off, i) => window.scrollY + winH / 2 < (offsets[i + 1] ?? Infinity)
+        (off, i) => window.scrollY + winH / 2 < (offsets[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -65,7 +65,7 @@ export default function BlueprintRoute() {
   const total = offsets[offsets.length - 1] - offsets[0] || 1;
   const progress = Math.min(
     1,
-    Math.max(0, (scrollY - offsets[0]) / (total || 1))
+    Math.max(0, (scrollY - offsets[0]) / (total || 1)),
   );
 
   // Interpolate traveler position along the zig-zag path
@@ -85,7 +85,7 @@ export default function BlueprintRoute() {
 
   // Build SVG path string
   const pathD = ZIGZAG_POINTS.map(
-    (p, i) => `${i === 0 ? "M" : "L"} ${p.x * 64} ${p.y * svgHeight}`
+    (p, i) => `${i === 0 ? "M" : "L"} ${p.x * 64} ${p.y * svgHeight}`,
   ).join(" ");
 
   return (

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Skill, SkillCategory } from '@/types/skills';
-import { skills } from '@/constants/skills';
-import { fadeInUp, staggerContainer } from '@/utils/animations';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Skill, SkillCategory } from "@/types/skills";
+import { skills } from "@/constants/skills";
+import { fadeInUp, staggerContainer } from "@/utils/animations";
 
 const categories: SkillCategory[] = [
-  'Full Stack Dev',
-  'Field Technician',
-  'Low Voltage',
-  'Leadership',
-  'Repair'
+  "Full Stack Dev",
+  "Field Technician",
+  "Low Voltage",
+  "Leadership",
+  "Repair",
 ];
 
 interface SkillCardProps {
@@ -41,7 +41,7 @@ const SkillCard = ({ skill }: SkillCardProps) => {
           className="h-full bg-blue-500"
           initial={{ width: 0 }}
           animate={{ width: `${skill.proficiency}%` }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          transition={{ duration: 1, ease: "easeOut" }}
         />
       </div>
 
@@ -62,11 +62,14 @@ const SkillCard = ({ skill }: SkillCardProps) => {
 };
 
 export const Skills = () => {
-  const [selectedCategory, setSelectedCategory] = useState<SkillCategory | 'All'>('All');
+  const [selectedCategory, setSelectedCategory] = useState<
+    SkillCategory | "All"
+  >("All");
 
-  const filteredSkills = selectedCategory === 'All'
-    ? skills
-    : skills.filter(skill => skill.category === selectedCategory);
+  const filteredSkills =
+    selectedCategory === "All"
+      ? skills
+      : skills.filter((skill) => skill.category === selectedCategory);
 
   return (
     <div className="w-full">
@@ -74,11 +77,11 @@ export const Skills = () => {
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         <motion.button
           key="all"
-          onClick={() => setSelectedCategory('All')}
+          onClick={() => setSelectedCategory("All")}
           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-            selectedCategory === 'All'
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+            selectedCategory === "All"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-800 text-gray-300 hover:bg-gray-700"
           }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -91,8 +94,8 @@ export const Skills = () => {
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedCategory === category
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                ? "bg-blue-500 text-white"
+                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -126,4 +129,4 @@ export const Skills = () => {
       </motion.div>
     </div>
   );
-}; 
+};

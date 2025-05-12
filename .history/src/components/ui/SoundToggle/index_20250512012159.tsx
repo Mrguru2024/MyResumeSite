@@ -29,23 +29,29 @@ export default function SoundToggle() {
       setIsMuted(e.detail.isMuted);
     };
 
-    window.addEventListener(SOUND_STATE_CHANGE, handleSoundStateChange as EventListener);
+    window.addEventListener(
+      SOUND_STATE_CHANGE,
+      handleSoundStateChange as EventListener,
+    );
     return () => {
-      window.removeEventListener(SOUND_STATE_CHANGE, handleSoundStateChange as EventListener);
+      window.removeEventListener(
+        SOUND_STATE_CHANGE,
+        handleSoundStateChange as EventListener,
+      );
     };
   }, [hasMounted]);
 
   const toggleMute = () => {
     const newState = !isMuted;
     setIsMuted(newState);
-    
+
     try {
       localStorage.setItem("blueprintroute-muted", newState ? "true" : "false");
       // Dispatch custom event
       window.dispatchEvent(
         new CustomEvent(SOUND_STATE_CHANGE, {
-          detail: { isMuted: newState }
-        })
+          detail: { isMuted: newState },
+        }),
       );
     } catch (error) {
       console.error("Error updating sound state:", error);

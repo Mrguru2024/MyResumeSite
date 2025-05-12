@@ -22,13 +22,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             "h-10 px-4 py-2": size === "md",
             "h-11 px-8 text-lg": size === "lg",
           },
-          className
+          className,
         )}
         ref={ref}
         {...props}
       />
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

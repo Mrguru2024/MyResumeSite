@@ -31,7 +31,7 @@ describe("BlueprintRoute", () => {
     fireEvent.click(soundBtn);
     // Should toggle icon (test by aria-label change)
     expect(soundBtn.getAttribute("aria-label")).toMatch(
-      /enable|disable sound/i
+      /enable|disable sound/i,
     );
   });
 
@@ -43,8 +43,8 @@ describe("BlueprintRoute", () => {
     });
     expect(
       await screen.findByText(
-        /who am i|skills|experience|projects|portfolio|contact/i
-      )
+        /who am i|skills|experience|projects|portfolio|contact/i,
+      ),
     ).toBeInTheDocument();
   });
 

@@ -44,7 +44,10 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative">
+      <section
+        id="hero"
+        className="min-h-screen flex items-center justify-center relative"
+      >
         <Hero />
       </section>
       {/* BlueprintRoute in flow, with vertical margin */}
@@ -52,19 +55,31 @@ export default function Home() {
         <BlueprintRoute />
       </div>
       {/* About Section */}
-      <section id="about" className="min-h-screen mt-24 flex items-center justify-center relative">
+      <section
+        id="about"
+        className="min-h-screen mt-24 flex items-center justify-center relative"
+      >
         <About />
       </section>
       {/* Skills Section */}
-      <section id="skills" className="min-h-screen mt-24 flex items-center justify-center relative">
+      <section
+        id="skills"
+        className="min-h-screen mt-24 flex items-center justify-center relative"
+      >
         <Skills />
       </section>
       {/* Experience Section */}
-      <section id="experience" className="min-h-screen mt-24 flex items-center justify-center relative">
+      <section
+        id="experience"
+        className="min-h-screen mt-24 flex items-center justify-center relative"
+      >
         <Experience />
       </section>
       {/* Portfolio Section */}
-      <section id="portfolio" className="min-h-screen mt-24 flex items-center justify-center relative">
+      <section
+        id="portfolio"
+        className="min-h-screen mt-24 flex items-center justify-center relative"
+      >
         <Portfolio />
       </section>
     </div>

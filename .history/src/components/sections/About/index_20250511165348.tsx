@@ -243,7 +243,7 @@ export default function About() {
                 className={cn(
                   "absolute inset-0 backface-hidden rounded-2xl p-10 md:p-14 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent",
                   "bg-white/20 dark:bg-background-dark/60 backdrop-blur-xl",
-                  isFlipped && "hidden"
+                  isFlipped && "hidden",
                 )}
                 style={{
                   boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -318,7 +318,7 @@ export default function About() {
               <motion.div
                 className={cn(
                   "absolute inset-0 backface-hidden rounded-2xl p-10 md:p-14 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-white/20 dark:bg-background-dark/60 backdrop-blur-xl rotate-y-180",
-                  !isFlipped && "hidden"
+                  !isFlipped && "hidden",
                 )}
                 style={{
                   boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",

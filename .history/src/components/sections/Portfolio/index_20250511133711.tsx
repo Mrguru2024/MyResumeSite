@@ -36,7 +36,8 @@ const PROJECTS = [
     tags: ["eeprom", "repairs"],
     description: "Custom scripts for EEPROM-based key programming.",
     caseStudy: {
-      challenge: "Needed to program keys for modern vehicles with EEPROM chips.",
+      challenge:
+        "Needed to program keys for modern vehicles with EEPROM chips.",
       action: "Created scripts and hardware interface for safe programming.",
       result: "Enabled new revenue stream and faster service for clients.",
     },
@@ -46,30 +47,36 @@ const PROJECTS = [
 
 export default function Portfolio() {
   const [filter, setFilter] = useState<string | null>(null);
-  const [selected, setSelected] = useState<typeof PROJECTS[0] | null>(null);
+  const [selected, setSelected] = useState<(typeof PROJECTS)[0] | null>(null);
 
-  const filtered = filter ? PROJECTS.filter(p => p.tags.includes(filter)) : PROJECTS;
+  const filtered = filter
+    ? PROJECTS.filter((p) => p.tags.includes(filter))
+    : PROJECTS;
 
   return (
     <section id="portfolio" className="min-h-screen bg-background-dark py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-8 text-center">Portfolio Projects</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-8 text-center">
+          Portfolio Projects
+        </h2>
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             className={cn(
               "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
-              !filter && "bg-skill-fullstack/10 text-text-primary border-skill-fullstack"
+              !filter &&
+                "bg-skill-fullstack/10 text-text-primary border-skill-fullstack",
             )}
             onClick={() => setFilter(null)}
           >
             All
           </button>
-          {TAGS.map(tag => (
+          {TAGS.map((tag) => (
             <button
               key={tag.key}
               className={cn(
                 "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
-                filter === tag.key && `bg-${tag.color}/10 text-${tag.color} border-${tag.color}`
+                filter === tag.key &&
+                  `bg-${tag.color}/10 text-${tag.color} border-${tag.color}`,
               )}
               onClick={() => setFilter(tag.key)}
             >
@@ -78,7 +85,7 @@ export default function Portfolio() {
           ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {filtered.map(project => (
+          {filtered.map((project) => (
             <motion.div
               key={project.title}
               whileHover={{ scale: 1.04 }}
@@ -89,16 +96,18 @@ export default function Portfolio() {
               role="button"
               aria-label={`View details for ${project.title}`}
             >
-              <h3 className="text-xl font-bold mb-2 text-text-primary">{project.title}</h3>
+              <h3 className="text-xl font-bold mb-2 text-text-primary">
+                {project.title}
+              </h3>
               <div className="flex flex-wrap gap-2 mb-2">
-                {project.tags.map(tag => {
-                  const tagObj = TAGS.find(t => t.key === tag);
+                {project.tags.map((tag) => {
+                  const tagObj = TAGS.find((t) => t.key === tag);
                   return (
                     <span
                       key={tag}
                       className={cn(
                         "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                        `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`
+                        `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`,
                       )}
                     >
                       {tagObj?.label}
@@ -106,7 +115,9 @@ export default function Portfolio() {
                   );
                 })}
               </div>
-              <p className="text-text-secondary text-sm">{project.description}</p>
+              <p className="text-text-secondary text-sm">
+                {project.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -124,7 +135,7 @@ export default function Portfolio() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                onClick={e => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               >
                 <button
                   className="absolute top-3 right-3 text-text-secondary hover:text-text-primary"
@@ -133,16 +144,18 @@ export default function Portfolio() {
                 >
                   ×
                 </button>
-                <h3 className="text-2xl font-bold mb-4 text-text-primary">{selected.title}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-text-primary">
+                  {selected.title}
+                </h3>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {selected.tags.map(tag => {
-                    const tagObj = TAGS.find(t => t.key === tag);
+                  {selected.tags.map((tag) => {
+                    const tagObj = TAGS.find((t) => t.key === tag);
                     return (
                       <span
                         key={tag}
                         className={cn(
                           "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                          `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`
+                          `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`,
                         )}
                       >
                         {tagObj?.label}
@@ -151,12 +164,24 @@ export default function Portfolio() {
                   })}
                 </div>
                 <div className="mb-2">
-                  <strong className="block text-text-accent mb-1">Challenge</strong>
-                  <p className="text-text-secondary mb-2">{selected.caseStudy.challenge}</p>
-                  <strong className="block text-text-accent mb-1">Action</strong>
-                  <p className="text-text-secondary mb-2">{selected.caseStudy.action}</p>
-                  <strong className="block text-text-accent mb-1">Result</strong>
-                  <p className="text-text-secondary">{selected.caseStudy.result}</p>
+                  <strong className="block text-text-accent mb-1">
+                    Challenge
+                  </strong>
+                  <p className="text-text-secondary mb-2">
+                    {selected.caseStudy.challenge}
+                  </p>
+                  <strong className="block text-text-accent mb-1">
+                    Action
+                  </strong>
+                  <p className="text-text-secondary mb-2">
+                    {selected.caseStudy.action}
+                  </p>
+                  <strong className="block text-text-accent mb-1">
+                    Result
+                  </strong>
+                  <p className="text-text-secondary">
+                    {selected.caseStudy.result}
+                  </p>
                 </div>
               </motion.div>
             </motion.div>
@@ -165,4 +190,4 @@ export default function Portfolio() {
       </div>
     </section>
   );
-} 
+}

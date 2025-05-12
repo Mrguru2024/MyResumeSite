@@ -67,7 +67,7 @@ const MINIMAP_HEIGHT = 200; // Fixed height for mini-map
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -148,7 +148,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -183,7 +183,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -283,8 +283,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -317,8 +317,8 @@ export default function BlueprintRoute() {
       setIsLargeScreen(window.innerWidth >= 1280); // Show mini-map on xl screens
     };
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, [isMounted]);
 
   if (!isMounted) {
@@ -377,72 +377,77 @@ export default function BlueprintRoute() {
               </svg>
             )}
           </motion.button>,
-          document.body
+          document.body,
         )}
 
       {/* Mini-map for large screens */}
-      {isMounted && isLargeScreen && createPortal(
-        <motion.div
-          className="fixed right-8 top-1/2 -translate-y-1/2 z-40 bg-card-bg/80 backdrop-blur-sm border border-card-border rounded-lg p-2 shadow-lg"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="relative" style={{ width: MINIMAP_WIDTH, height: MINIMAP_HEIGHT }}>
-            {/* Mini-map path */}
-            <svg
-              width={MINIMAP_WIDTH}
-              height={MINIMAP_HEIGHT}
-              viewBox={`0 0 ${SVG_WIDTH} ${svgHeight}`}
-              preserveAspectRatio="xMidYMid meet"
-              className="opacity-50"
+      {isMounted &&
+        isLargeScreen &&
+        createPortal(
+          <motion.div
+            className="fixed right-8 top-1/2 -translate-y-1/2 z-40 bg-card-bg/80 backdrop-blur-sm border border-card-border rounded-lg p-2 shadow-lg"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div
+              className="relative"
+              style={{ width: MINIMAP_WIDTH, height: MINIMAP_HEIGHT }}
             >
-              <path
-                d={pathD}
-                fill="none"
-                stroke="url(#pathGradient)"
-                strokeWidth={2}
-                strokeDasharray="4 4"
-              />
-              {/* Mini-map markers */}
-              {markerPoints.map((pt, i) => (
+              {/* Mini-map path */}
+              <svg
+                width={MINIMAP_WIDTH}
+                height={MINIMAP_HEIGHT}
+                viewBox={`0 0 ${SVG_WIDTH} ${svgHeight}`}
+                preserveAspectRatio="xMidYMid meet"
+                className="opacity-50"
+              >
+                <path
+                  d={pathD}
+                  fill="none"
+                  stroke="url(#pathGradient)"
+                  strokeWidth={2}
+                  strokeDasharray="4 4"
+                />
+                {/* Mini-map markers */}
+                {markerPoints.map((pt, i) => (
+                  <circle
+                    key={SECTIONS[i].id}
+                    cx={pt.x}
+                    cy={pt.y}
+                    r={MARKER_RADIUS * MINIMAP_SCALE}
+                    fill={SECTIONS[i].color}
+                    stroke="#fff"
+                    strokeWidth={1}
+                  />
+                ))}
+                {/* Mini-map traveler */}
                 <circle
-                  key={SECTIONS[i].id}
-                  cx={pt.x}
-                  cy={pt.y}
-                  r={MARKER_RADIUS * MINIMAP_SCALE}
-                  fill={SECTIONS[i].color}
+                  cx={traveler.x}
+                  cy={traveler.y}
+                  r={TRAVELER_RADIUS * MINIMAP_SCALE}
+                  fill="url(#travelerGradient)"
                   stroke="#fff"
                   strokeWidth={1}
                 />
-              ))}
-              {/* Mini-map traveler */}
-              <circle
-                cx={traveler.x}
-                cy={traveler.y}
-                r={TRAVELER_RADIUS * MINIMAP_SCALE}
-                fill="url(#travelerGradient)"
-                stroke="#fff"
-                strokeWidth={1}
+              </svg>
+              {/* Viewport indicator */}
+              <motion.div
+                className="absolute border-2 border-blue-500 rounded-lg pointer-events-none"
+                style={{
+                  width: MINIMAP_WIDTH,
+                  height: (MINIMAP_HEIGHT * window.innerHeight) / svgHeight,
+                  y: (scrollY / svgHeight) * MINIMAP_HEIGHT,
+                }}
+                animate={{
+                  y: (scrollY / svgHeight) * MINIMAP_HEIGHT,
+                }}
+                transition={{ type: "spring", stiffness: 100, damping: 30 }}
               />
-            </svg>
-            {/* Viewport indicator */}
-            <motion.div
-              className="absolute border-2 border-blue-500 rounded-lg pointer-events-none"
-              style={{
-                width: MINIMAP_WIDTH,
-                height: (MINIMAP_HEIGHT * window.innerHeight) / svgHeight,
-                y: (scrollY / svgHeight) * MINIMAP_HEIGHT,
-              }}
-              animate={{
-                y: (scrollY / svgHeight) * MINIMAP_HEIGHT,
-              }}
-              transition={{ type: "spring", stiffness: 100, damping: 30 }}
-            />
-          </div>
-        </motion.div>,
-        document.body
-      )}
+            </div>
+          </motion.div>,
+          document.body,
+        )}
 
       <svg
         ref={svgRef}
@@ -512,7 +517,13 @@ export default function BlueprintRoute() {
           </radialGradient>
 
           {/* Particle effect for active section */}
-          <filter id="particleGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <filter
+            id="particleGlow"
+            x="-50%"
+            y="-50%"
+            width="200%"
+            height="200%"
+          >
             <feGaussianBlur stdDeviation="2" result="blur" />
             <feColorMatrix
               in="blur"
@@ -564,7 +575,7 @@ export default function BlueprintRoute() {
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
-                offsetDistance: [`${(i * 5)}%`, `${(i * 5 + 100)}%`],
+                offsetDistance: [`${i * 5}%`, `${i * 5 + 100}%`],
               }}
               transition={{
                 duration: 3,
@@ -745,7 +756,7 @@ export default function BlueprintRoute() {
               </p>
             </div>
           </motion.div>,
-          document.body
+          document.body,
         )}
     </>
   );

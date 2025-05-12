@@ -26,7 +26,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<GitHubRepo | null>(
-    null
+    null,
   );
   const [previewError, setPreviewError] = useState<Record<string, boolean>>({});
 
@@ -78,7 +78,7 @@ export default function Projects() {
                 .sort(
                   (a, b) =>
                     new Date(b.updated_at).getTime() -
-                    new Date(a.updated_at).getTime()
+                    new Date(a.updated_at).getTime(),
                 )
                 .slice(0, 8)
                 .map((project, idx) => (

@@ -12,41 +12,73 @@ const SKILL_CATEGORIES = [
 ];
 
 const SKILLS = [
-  { name: "React", category: "fullstack", description: "Modern UI development." },
-  { name: "Node.js", category: "fullstack", description: "Backend APIs and services." },
-  { name: "Locksmithing", category: "field", description: "Physical and electronic locks." },
-  { name: "Alarm Systems", category: "lowvoltage", description: "Security and fire systems." },
-  { name: "Team Leadership", category: "leadership", description: "Leading cross-functional teams." },
-  { name: "Soldering", category: "repair", description: "Precision electronics repair." },
+  {
+    name: "React",
+    category: "fullstack",
+    description: "Modern UI development.",
+  },
+  {
+    name: "Node.js",
+    category: "fullstack",
+    description: "Backend APIs and services.",
+  },
+  {
+    name: "Locksmithing",
+    category: "field",
+    description: "Physical and electronic locks.",
+  },
+  {
+    name: "Alarm Systems",
+    category: "lowvoltage",
+    description: "Security and fire systems.",
+  },
+  {
+    name: "Team Leadership",
+    category: "leadership",
+    description: "Leading cross-functional teams.",
+  },
+  {
+    name: "Soldering",
+    category: "repair",
+    description: "Precision electronics repair.",
+  },
   // ...add more skills as needed
 ];
 
 export default function Skills() {
   const [filter, setFilter] = useState<string | null>(null);
-  const [selectedSkill, setSelectedSkill] = useState<typeof SKILLS[0] | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<(typeof SKILLS)[0] | null>(
+    null,
+  );
 
-  const filteredSkills = filter ? SKILLS.filter(s => s.category === filter) : SKILLS;
+  const filteredSkills = filter
+    ? SKILLS.filter((s) => s.category === filter)
+    : SKILLS;
 
   return (
     <section id="skills" className="min-h-screen bg-background-dark py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-8 text-center">Skills</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-8 text-center">
+          Skills
+        </h2>
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             className={cn(
               "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
-              !filter && "bg-skill-fullstack/10 text-text-primary border-skill-fullstack"
+              !filter &&
+                "bg-skill-fullstack/10 text-text-primary border-skill-fullstack",
             )}
             onClick={() => setFilter(null)}
           >
             All
           </button>
-          {SKILL_CATEGORIES.map(cat => (
+          {SKILL_CATEGORIES.map((cat) => (
             <button
               key={cat.key}
               className={cn(
                 "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
-                filter === cat.key && `bg-${cat.color.replace('text-', '')}/10 text-${cat.color} border-${cat.color.replace('text-', '')}`
+                filter === cat.key &&
+                  `bg-${cat.color.replace("text-", "")}/10 text-${cat.color} border-${cat.color.replace("text-", "")}`,
               )}
               onClick={() => setFilter(cat.key)}
             >
@@ -55,21 +87,28 @@ export default function Skills() {
           ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {filteredSkills.map(skill => (
+          {filteredSkills.map((skill) => (
             <motion.div
               key={skill.name}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
               className={cn(
                 "bg-card-bg border border-card-border rounded-xl p-6 shadow-lg cursor-pointer transition-colors hover:bg-card-hover",
-                SKILL_CATEGORIES.find(cat => cat.key === skill.category)?.color
+                SKILL_CATEGORIES.find((cat) => cat.key === skill.category)
+                  ?.color,
               )}
               onClick={() => setSelectedSkill(skill)}
               tabIndex={0}
               role="button"
               aria-label={`View details for ${skill.name}`}
             >
-              <h3 className={cn("text-xl font-bold mb-2", SKILL_CATEGORIES.find(cat => cat.key === skill.category)?.color)}>
+              <h3
+                className={cn(
+                  "text-xl font-bold mb-2",
+                  SKILL_CATEGORIES.find((cat) => cat.key === skill.category)
+                    ?.color,
+                )}
+              >
                 {skill.name}
               </h3>
               <p className="text-text-secondary text-sm">{skill.description}</p>
@@ -90,7 +129,7 @@ export default function Skills() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                onClick={e => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               >
                 <button
                   className="absolute top-3 right-3 text-text-secondary hover:text-text-primary"
@@ -99,12 +138,32 @@ export default function Skills() {
                 >
                   ×
                 </button>
-                <h3 className={cn("text-2xl font-bold mb-4", SKILL_CATEGORIES.find(cat => cat.key === selectedSkill.category)?.color)}>
+                <h3
+                  className={cn(
+                    "text-2xl font-bold mb-4",
+                    SKILL_CATEGORIES.find(
+                      (cat) => cat.key === selectedSkill.category,
+                    )?.color,
+                  )}
+                >
                   {selectedSkill.name}
                 </h3>
-                <p className="text-text-secondary mb-2">{selectedSkill.description}</p>
-                <span className={cn("inline-block px-3 py-1 rounded-full text-xs font-semibold mt-2", SKILL_CATEGORIES.find(cat => cat.key === selectedSkill.category)?.color)}>
-                  {SKILL_CATEGORIES.find(cat => cat.key === selectedSkill.category)?.label}
+                <p className="text-text-secondary mb-2">
+                  {selectedSkill.description}
+                </p>
+                <span
+                  className={cn(
+                    "inline-block px-3 py-1 rounded-full text-xs font-semibold mt-2",
+                    SKILL_CATEGORIES.find(
+                      (cat) => cat.key === selectedSkill.category,
+                    )?.color,
+                  )}
+                >
+                  {
+                    SKILL_CATEGORIES.find(
+                      (cat) => cat.key === selectedSkill.category,
+                    )?.label
+                  }
                 </span>
               </motion.div>
             </motion.div>
@@ -113,4 +172,4 @@ export default function Skills() {
       </div>
     </section>
   );
-} 
+}

@@ -60,7 +60,7 @@ export default function Experience() {
               <span
                 className={cn(
                   "absolute -left-6 top-4 w-6 h-6 rounded-full border-4 border-background-dark",
-                  `bg-${exp.color}`
+                  `bg-${exp.color}`,
                 )}
                 aria-hidden="true"
               />

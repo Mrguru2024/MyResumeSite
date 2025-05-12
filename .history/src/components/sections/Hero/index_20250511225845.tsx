@@ -67,8 +67,13 @@ export default function Hero() {
           />
           {/* Office walls (animated rectangles) */}
           <motion.rect
-            x="400" y="250" width="640" height="400"
-            stroke="#38bdf8" strokeWidth="3" fill="none"
+            x="400"
+            y="250"
+            width="640"
+            height="400"
+            stroke="#38bdf8"
+            strokeWidth="3"
+            fill="none"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 1.2, delay: 0.2 }}
@@ -76,8 +81,14 @@ export default function Hero() {
           />
           {/* Interior wall */}
           <motion.line
-            x1="720" y1="250" x2="720" y2="650"
-            stroke="#38bdf8" strokeWidth="2" strokeDasharray="400" strokeDashoffset="400"
+            x1="720"
+            y1="250"
+            x2="720"
+            y2="650"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeDasharray="400"
+            strokeDashoffset="400"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
             style={{ opacity: 0.18 }}
@@ -85,30 +96,50 @@ export default function Hero() {
           {/* Door symbol (arc + swing) */}
           <motion.path
             d="M720 650 Q740 670 760 650"
-            stroke="#38bdf8" strokeWidth="2" fill="none"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            fill="none"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             style={{ opacity: 0.22 }}
           />
           <motion.line
-            x1="760" y1="650" x2="760" y2="630"
-            stroke="#38bdf8" strokeWidth="2" strokeDasharray="20" strokeDashoffset="20"
+            x1="760"
+            y1="650"
+            x2="760"
+            y2="630"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeDasharray="20"
+            strokeDashoffset="20"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
             style={{ opacity: 0.22 }}
           />
           {/* Window symbols (short lines) */}
           <motion.line
-            x1="400" y1="400" x2="420" y2="400"
-            stroke="#38bdf8" strokeWidth="2" strokeDasharray="20" strokeDashoffset="20"
+            x1="400"
+            y1="400"
+            x2="420"
+            y2="400"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeDasharray="20"
+            strokeDashoffset="20"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
             style={{ opacity: 0.22 }}
           />
           <motion.line
-            x1="1020" y1="400" x2="1040" y2="400"
-            stroke="#38bdf8" strokeWidth="2" strokeDasharray="20" strokeDashoffset="20"
+            x1="1020"
+            y1="400"
+            x2="1040"
+            y2="400"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeDasharray="20"
+            strokeDashoffset="20"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
             style={{ opacity: 0.22 }}
@@ -116,7 +147,9 @@ export default function Hero() {
           {/* Stairs symbol (zig-zag lines) */}
           <motion.polyline
             points="420,650 440,630 460,650 480,630 500,650"
-            stroke="#38bdf8" strokeWidth="2" fill="none"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            fill="none"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 1, delay: 1.3 }}
@@ -124,38 +157,66 @@ export default function Hero() {
           />
           {/* Dimension lines */}
           <motion.line
-            x1="400" y1="670" x2="1040" y2="670"
-            stroke="#38bdf8" strokeWidth="1" strokeDasharray="640" strokeDashoffset="640"
+            x1="400"
+            y1="670"
+            x2="1040"
+            y2="670"
+            stroke="#38bdf8"
+            strokeWidth="1"
+            strokeDasharray="640"
+            strokeDashoffset="640"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 1, delay: 1.5 }}
             style={{ opacity: 0.13 }}
           />
           <motion.line
-            x1="380" y1="250" x2="380" y2="650"
-            stroke="#38bdf8" strokeWidth="1" strokeDasharray="400" strokeDashoffset="400"
+            x1="380"
+            y1="250"
+            x2="380"
+            y2="650"
+            stroke="#38bdf8"
+            strokeWidth="1"
+            strokeDasharray="400"
+            strokeDashoffset="400"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 1, delay: 1.6 }}
             style={{ opacity: 0.13 }}
           />
           {/* Section mark (circle + cross) */}
           <motion.circle
-            cx="400" cy="250" r="18"
-            stroke="#38bdf8" strokeWidth="1.5" fill="none"
+            cx="400"
+            cy="250"
+            r="18"
+            stroke="#38bdf8"
+            strokeWidth="1.5"
+            fill="none"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 0.7, delay: 1.8 }}
             style={{ opacity: 0.18 }}
           />
           <motion.line
-            x1="400" y1="232" x2="400" y2="268"
-            stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="36" strokeDashoffset="36"
+            x1="400"
+            y1="232"
+            x2="400"
+            y2="268"
+            stroke="#38bdf8"
+            strokeWidth="1.5"
+            strokeDasharray="36"
+            strokeDashoffset="36"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 0.5, delay: 1.9 }}
             style={{ opacity: 0.18 }}
           />
           <motion.line
-            x1="382" y1="250" x2="418" y2="250"
-            stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="36" strokeDashoffset="36"
+            x1="382"
+            y1="250"
+            x2="418"
+            y2="250"
+            stroke="#38bdf8"
+            strokeWidth="1.5"
+            strokeDasharray="36"
+            strokeDashoffset="36"
             animate={{ strokeDashoffset: 0 }}
             transition={{ duration: 0.5, delay: 2 }}
             style={{ opacity: 0.18 }}

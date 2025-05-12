@@ -54,7 +54,10 @@ export default function Portfolio() {
     : PROJECTS;
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative pt-32" data-blueprint-section>
+    <section
+      className="min-h-screen flex items-center justify-center relative pt-32"
+      data-blueprint-section
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent">
         <motion.div
           className="w-full max-w-5xl mx-auto"
@@ -71,7 +74,7 @@ export default function Portfolio() {
               className={cn(
                 "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
                 !filter &&
-                  "bg-skill-fullstack/10 text-text-primary border-skill-fullstack"
+                  "bg-skill-fullstack/10 text-text-primary border-skill-fullstack",
               )}
               onClick={() => setFilter(null)}
             >
@@ -83,7 +86,7 @@ export default function Portfolio() {
                 className={cn(
                   "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
                   filter === tag.key &&
-                    `bg-${tag.color}/10 text-${tag.color} border-${tag.color}`
+                    `bg-${tag.color}/10 text-${tag.color} border-${tag.color}`,
                 )}
                 onClick={() => setFilter(tag.key)}
               >
@@ -114,7 +117,7 @@ export default function Portfolio() {
                         key={tag}
                         className={cn(
                           "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                          `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`
+                          `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`,
                         )}
                       >
                         {tagObj?.label}
@@ -162,7 +165,7 @@ export default function Portfolio() {
                           key={tag}
                           className={cn(
                             "inline-block px-3 py-1 rounded-full text-xs font-semibold",
-                            `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`
+                            `bg-${tagObj?.color}/10 text-${tagObj?.color} border border-${tagObj?.color}`,
                           )}
                         >
                           {tagObj?.label}

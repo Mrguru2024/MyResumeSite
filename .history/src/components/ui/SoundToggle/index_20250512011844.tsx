@@ -26,7 +26,7 @@ export default function SoundToggle() {
     <button
       onClick={toggleMute}
       className="fixed top-4 left-4 z-[99999] bg-red-500 border-4 border-yellow-400 rounded-full p-4 shadow-2xl hover:scale-110 transition-transform"
-      style={{ position: 'fixed', zIndex: 99999 }}
+      style={{ position: "fixed", zIndex: 99999 }}
       aria-label={isMuted ? "Enable sound" : "Disable sound"}
     >
       {isMuted ? (
@@ -64,4 +64,4 @@ export default function SoundToggle() {
       )}
     </button>
   );
-} 
+}

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface HeroProps {
   title: string;
@@ -20,7 +20,7 @@ export const Hero = ({ title, subtitle }: HeroProps) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center z-10"
       >
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
@@ -47,4 +47,4 @@ export const Hero = ({ title, subtitle }: HeroProps) => {
       </motion.div>
     </section>
   );
-}; 
+};

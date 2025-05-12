@@ -41,7 +41,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -57,8 +57,8 @@ export default function BlueprintRoute() {
     1,
     Math.max(
       0,
-      (scrollY + window.innerHeight / 2 - sectionCenters[0]) / (total || 1)
-    )
+      (scrollY + window.innerHeight / 2 - sectionCenters[0]) / (total || 1),
+    ),
   );
 
   // Interpolate traveler position along the path
@@ -75,7 +75,7 @@ export default function BlueprintRoute() {
 
   // Build SVG path string (vertical, but can be curved/zig-zag for more style)
   const markerYs = sectionCenters.map(
-    (c) => (c ?? 0) - (sectionCenters[0] ?? 0)
+    (c) => (c ?? 0) - (sectionCenters[0] ?? 0),
   );
   const pathD = markerYs.length
     ? markerYs.map((y, i) => `${i === 0 ? "M" : "L"} 32 ${y}`).join(" ")

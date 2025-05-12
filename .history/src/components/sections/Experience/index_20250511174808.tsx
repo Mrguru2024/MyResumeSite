@@ -14,7 +14,7 @@ const EXPERIENCES = [
       "Diagnosed and repaired electronic devices, including smartphones, tablets, laptops, and gaming consoles.",
       "Performed component-level troubleshooting and repair of circuit boards to resolve hardware issues.",
       "Utilized specialized tools and equipment to solder components and replace faulty parts.",
-      "Maintained a high level of accuracy in diagnosing problems by conducting thorough testing and analysis."
+      "Maintained a high level of accuracy in diagnosing problems by conducting thorough testing and analysis.",
     ],
     color: "skill-fullstack",
   },
@@ -49,7 +49,7 @@ export default function Experience() {
                 <span
                   className={cn(
                     "absolute -left-6 top-4 w-6 h-6 rounded-full border-4 border-background-dark",
-                    `bg-${exp.color}`
+                    `bg-${exp.color}`,
                   )}
                   aria-hidden="true"
                 />
@@ -57,7 +57,7 @@ export default function Experience() {
                   <h3
                     className={cn(
                       "text-xl font-bold mb-1",
-                      `text-${exp.color}`
+                      `text-${exp.color}`,
                     )}
                   >
                     {exp.title}

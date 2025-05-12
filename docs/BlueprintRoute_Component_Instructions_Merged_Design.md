@@ -1,4 +1,3 @@
-
 # 🛠 BlueprintRoute Component Development Instructions (FINAL)
 
 ## Purpose
@@ -56,13 +55,13 @@ Build a **scroll-driven, interactive resume journey** using a custom React compo
 
 ## 🧩 Design Fusion Summary: Road/Highway + Electric Circuit
 
-| Feature | Road/Highway | Electric Circuit |
-|--------|---------------|------------------|
-| **Path Layout** | Curved SVG trail | Layered circuit lines and nodes |
-| **Milestones** | Highway exits or stops | Circuit nodes (pulsing) |
-| **Motion** | Smooth scroll drawing | Electric pulse traveling path |
-| **Theme** | Career journey | Technical interconnectedness |
-| **Colors** | Gray path with orange/white signs | Cyan-blue glows, sparks, animated flows |
+| Feature         | Road/Highway                      | Electric Circuit                        |
+| --------------- | --------------------------------- | --------------------------------------- |
+| **Path Layout** | Curved SVG trail                  | Layered circuit lines and nodes         |
+| **Milestones**  | Highway exits or stops            | Circuit nodes (pulsing)                 |
+| **Motion**      | Smooth scroll drawing             | Electric pulse traveling path           |
+| **Theme**       | Career journey                    | Technical interconnectedness            |
+| **Colors**      | Gray path with orange/white signs | Cyan-blue glows, sparks, animated flows |
 
 ---
 
@@ -71,7 +70,7 @@ Build a **scroll-driven, interactive resume journey** using a custom React compo
 ```jsx
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import styles from './BlueprintRoute.module.css';
+import styles from "./BlueprintRoute.module.css";
 
 const BlueprintRoute = () => {
   const ref = useRef();
@@ -99,8 +98,9 @@ const BlueprintRoute = () => {
           r="16"
           fill="#F97316"
           style={{
-            offsetPath: "path('M100 150 C300 300, 900 100, 1100 250 S1300 500, 1000 700 Q900 800, 800 1000 T600 1300')",
-            offsetDistance: scrollYProgress
+            offsetPath:
+              "path('M100 150 C300 300, 900 100, 1100 250 S1300 500, 1000 700 Q900 800, 800 1000 T600 1300')",
+            offsetDistance: scrollYProgress,
           }}
         />
       </svg>
@@ -133,15 +133,15 @@ export default BlueprintRoute;
 }
 
 .milestone {
-  fill: #F97316;
-  filter: drop-shadow(0 0 4px #F97316);
+  fill: #f97316;
+  filter: drop-shadow(0 0 4px #f97316);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
 .milestone:hover {
   transform: scale(1.2);
-  filter: drop-shadow(0 0 6px #FBBF24);
+  filter: drop-shadow(0 0 6px #fbbf24);
 }
 ```
 
@@ -150,4 +150,3 @@ export default BlueprintRoute;
 ## ✅ Final Result
 
 An immersive, scroll-responsive **Resume Trail Map**, styled like a **blueprint road circuit**, leading users through Anthony’s professional journey. It should feel polished, alive, and interactive — a fusion of structure and energy.
-

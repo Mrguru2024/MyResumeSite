@@ -26,7 +26,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<GitHubRepo | null>(
-    null
+    null,
   );
   const [previewError, setPreviewError] = useState<Record<string, boolean>>({});
 

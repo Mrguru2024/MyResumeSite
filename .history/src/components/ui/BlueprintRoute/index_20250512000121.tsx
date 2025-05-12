@@ -113,17 +113,17 @@ const SOUNDS = {
 } as const;
 
 // Minimal test button for debugging React event attachment
-if (typeof window !== 'undefined') {
-  const testBtn = document.getElementById('test-sound-btn');
+if (typeof window !== "undefined") {
+  const testBtn = document.getElementById("test-sound-btn");
   if (!testBtn) {
-    const btn = document.createElement('button');
-    btn.id = 'test-sound-btn';
-    btn.innerText = 'Test Button';
-    btn.style.position = 'fixed';
-    btn.style.top = '0px';
-    btn.style.left = '0px';
-    btn.style.zIndex = '99999';
-    btn.onclick = () => alert('clicked');
+    const btn = document.createElement("button");
+    btn.id = "test-sound-btn";
+    btn.innerText = "Test Button";
+    btn.style.position = "fixed";
+    btn.style.top = "0px";
+    btn.style.left = "0px";
+    btn.style.zIndex = "99999";
+    btn.onclick = () => alert("clicked");
     document.body.appendChild(btn);
   }
 }
@@ -132,7 +132,9 @@ if (typeof window !== 'undefined') {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>({} as any);
+  const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
+    {} as any,
+  );
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Set hasMounted after mount
@@ -148,7 +150,10 @@ function useSoundManager() {
   }, [hasMounted]);
   useEffect(() => {
     if (!hasMounted) return;
-    window.localStorage.setItem("blueprintroute-muted", isMuted ? "true" : "false");
+    window.localStorage.setItem(
+      "blueprintroute-muted",
+      isMuted ? "true" : "false",
+    );
   }, [isMuted, hasMounted]);
 
   useEffect(() => {
@@ -182,7 +187,7 @@ function useSoundManager() {
         }
       }
     },
-    [isInitialized, isMuted]
+    [isInitialized, isMuted],
   );
 
   const toggleMute = useCallback(() => {
@@ -262,7 +267,7 @@ export default function BlueprintRoute() {
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, toggleMute } = useSoundManager();
   const [markerPoints, setMarkerPoints] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
   const [sectionOffsets, setSectionOffsets] = useState<number[]>([]);
   const markerOffset = 40;
@@ -410,8 +415,8 @@ export default function BlueprintRoute() {
       // 2. Other markers: for each section header (excluding hero)
       const sectionHeaders = Array.from(
         document.querySelectorAll(
-          "[data-blueprint-section] h2, [data-blueprint-section] h1"
-        )
+          "[data-blueprint-section] h2, [data-blueprint-section] h1",
+        ),
       );
       sectionHeaders.forEach((header, i) => {
         const rect = header.getBoundingClientRect();
@@ -487,7 +492,7 @@ export default function BlueprintRoute() {
     const end = sectionOffsets[idx + 1] || start + 1;
     const sectionProgress = Math.min(
       1,
-      Math.max(0, (viewCenter - start) / (end - start))
+      Math.max(0, (viewCenter - start) / (end - start)),
     );
 
     // Get the current and next marker points
@@ -538,8 +543,8 @@ export default function BlueprintRoute() {
       setSvgHeight(
         Math.max(
           window.innerHeight,
-          markerPoints[markerPoints.length - 1].y + 200
-        )
+          markerPoints[markerPoints.length - 1].y + 200,
+        ),
       );
     }
   }, [markerPoints]);

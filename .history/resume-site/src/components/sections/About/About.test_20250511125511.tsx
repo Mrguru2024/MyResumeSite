@@ -13,7 +13,9 @@ describe("About", () => {
 
     // Check for summary text
     expect(
-      screen.getByText(/A versatile professional bridging the gap between technology and hands-on expertise./i)
+      screen.getByText(
+        /A versatile professional bridging the gap between technology and hands-on expertise./i,
+      ),
     ).toBeInTheDocument();
   });
 
@@ -30,7 +32,7 @@ describe("About", () => {
     // After clicking, the back content should be visible
     expect(screen.getByText(/Professional Summary/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/As a Full Stack Developer and Field Technician/i)
+      screen.getByText(/As a Full Stack Developer and Field Technician/i),
     ).toBeInTheDocument();
   });
 
@@ -41,4 +43,4 @@ describe("About", () => {
     expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 3 })).toBeInTheDocument();
   });
-}); 
+});

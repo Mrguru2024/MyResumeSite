@@ -95,7 +95,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -130,7 +130,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -230,8 +230,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -261,8 +261,10 @@ export default function BlueprintRoute() {
   useEffect(() => {
     if (!isMounted) return;
     function updateProgress() {
-      const total = sectionCenters[sectionCenters.length - 1] - sectionCenters[0];
-      const current = window.scrollY + window.innerHeight / 2 - sectionCenters[0];
+      const total =
+        sectionCenters[sectionCenters.length - 1] - sectionCenters[0];
+      const current =
+        window.scrollY + window.innerHeight / 2 - sectionCenters[0];
       const newProgress = Math.min(1, Math.max(0, current / total));
       setProgress(newProgress);
     }
@@ -278,28 +280,29 @@ export default function BlueprintRoute() {
   return (
     <>
       {/* Progress Indicator */}
-      {isMounted && createPortal(
-        <motion.div
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="h-32 w-1 bg-card-border rounded-full overflow-hidden">
-            <motion.div
-              className="w-full bg-blue-500"
-              style={{
-                scaleY: progress,
-                transformOrigin: "top",
-              }}
-            />
-          </div>
-          <span className="text-text-secondary text-sm font-medium">
-            {Math.round(progress * 100)}%
-          </span>
-        </motion.div>,
-        document.body
-      )}
+      {isMounted &&
+        createPortal(
+          <motion.div
+            className="fixed left-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="h-32 w-1 bg-card-border rounded-full overflow-hidden">
+              <motion.div
+                className="w-full bg-blue-500"
+                style={{
+                  scaleY: progress,
+                  transformOrigin: "top",
+                }}
+              />
+            </div>
+            <span className="text-text-secondary text-sm font-medium">
+              {Math.round(progress * 100)}%
+            </span>
+          </motion.div>,
+          document.body,
+        )}
 
       <svg
         ref={svgRef}
@@ -323,8 +326,17 @@ export default function BlueprintRoute() {
           {/* Enhanced glow filter */}
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="6" result="coloredBlur" />
-            <feFlood floodColor="#3b82f6" floodOpacity="0.3" result="glowColor" />
-            <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow" />
+            <feFlood
+              floodColor="#3b82f6"
+              floodOpacity="0.3"
+              result="glowColor"
+            />
+            <feComposite
+              in="glowColor"
+              in2="coloredBlur"
+              operator="in"
+              result="softGlow"
+            />
             <feMerge>
               <feMergeNode in="softGlow" />
               <feMergeNode in="SourceGraphic" />
@@ -520,7 +532,7 @@ export default function BlueprintRoute() {
               </p>
             </div>
           </motion.div>,
-          document.body
+          document.body,
         )}
     </>
   );

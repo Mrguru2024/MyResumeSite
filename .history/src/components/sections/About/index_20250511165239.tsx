@@ -55,9 +55,23 @@ export default function About() {
             className="absolute inset-0 z-0 pointer-events-none"
             aria-hidden
           >
-            <svg width="100%" height="100%" className="w-full h-full" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="100%"
+              height="100%"
+              className="w-full h-full"
+              viewBox="0 0 800 600"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <defs>
-                <radialGradient id="aboutBgGrad" cx="50%" cy="40%" r="80%" fx="50%" fy="40%">
+                <radialGradient
+                  id="aboutBgGrad"
+                  cx="50%"
+                  cy="40%"
+                  r="80%"
+                  fx="50%"
+                  fy="40%"
+                >
                   <stop offset="0%" stopColor="#10b981" stopOpacity="0.18" />
                   <stop offset="100%" stopColor="transparent" />
                 </radialGradient>
@@ -65,7 +79,13 @@ export default function About() {
               <rect width="800" height="600" fill="url(#aboutBgGrad)" />
               <g stroke="#10b981" strokeWidth="0.5" opacity="0.18">
                 {[...Array(12)].map((_, i) => (
-                  <circle key={i} cx={400} cy={300} r={40 + i * 40} fill="none" />
+                  <circle
+                    key={i}
+                    cx={400}
+                    cy={300}
+                    r={40 + i * 40}
+                    fill="none"
+                  />
                 ))}
               </g>
             </svg>
@@ -112,9 +132,30 @@ export default function About() {
               aria-hidden
             >
               <svg width="100%" height="100%" viewBox="0 0 320 320" fill="none">
-                <circle cx="160" cy="160" r="120" stroke="#10b981" strokeWidth="2" opacity="0.18" />
-                <circle cx="160" cy="160" r="80" stroke="#10b981" strokeWidth="1.5" opacity="0.12" />
-                <circle cx="160" cy="160" r="40" stroke="#10b981" strokeWidth="1" opacity="0.10" />
+                <circle
+                  cx="160"
+                  cy="160"
+                  r="120"
+                  stroke="#10b981"
+                  strokeWidth="2"
+                  opacity="0.18"
+                />
+                <circle
+                  cx="160"
+                  cy="160"
+                  r="80"
+                  stroke="#10b981"
+                  strokeWidth="1.5"
+                  opacity="0.12"
+                />
+                <circle
+                  cx="160"
+                  cy="160"
+                  r="40"
+                  stroke="#10b981"
+                  strokeWidth="1"
+                  opacity="0.10"
+                />
                 <g>
                   <motion.circle
                     cx="160"
@@ -122,7 +163,11 @@ export default function About() {
                     r="8"
                     fill="#10b981"
                     animate={{ cy: [60, 80, 60] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
                   />
                   <motion.circle
                     cx="260"
@@ -130,7 +175,11 @@ export default function About() {
                     r="6"
                     fill="#10b981"
                     animate={{ cx: [260, 240, 260] }}
-                    transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse" }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
                   />
                   <motion.circle
                     cx="160"
@@ -138,7 +187,11 @@ export default function About() {
                     r="5"
                     fill="#10b981"
                     animate={{ cy: [260, 240, 260] }}
-                    transition={{ duration: 2.2, repeat: Infinity, repeatType: "reverse" }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
                   />
                   <motion.circle
                     cx="60"
@@ -146,7 +199,11 @@ export default function About() {
                     r="7"
                     fill="#10b981"
                     animate={{ cx: [60, 80, 60] }}
-                    transition={{ duration: 2.7, repeat: Infinity, repeatType: "reverse" }}
+                    transition={{
+                      duration: 2.7,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
                   />
                 </g>
               </svg>
@@ -170,7 +227,7 @@ export default function About() {
                 className={cn(
                   "absolute inset-0 backface-hidden rounded-2xl p-10 md:p-14 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent",
                   "bg-white/20 dark:bg-background-dark/60 backdrop-blur-xl",
-                  isFlipped && "hidden"
+                  isFlipped && "hidden",
                 )}
                 style={{
                   boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -238,7 +295,8 @@ export default function About() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                  A versatile professional bridging the gap between technology and hands-on expertise.
+                  A versatile professional bridging the gap between technology
+                  and hands-on expertise.
                 </motion.p>
                 <motion.span
                   className="mt-2 text-base text-emerald-500 font-mono tracking-wide"
@@ -253,7 +311,7 @@ export default function About() {
               <motion.div
                 className={cn(
                   "absolute inset-0 backface-hidden rounded-2xl p-10 md:p-14 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-white/20 dark:bg-background-dark/60 backdrop-blur-xl rotate-y-180",
-                  !isFlipped && "hidden"
+                  !isFlipped && "hidden",
                 )}
                 style={{
                   boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -281,7 +339,10 @@ export default function About() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  As a Full Stack Developer and Field Technician, I combine technical expertise with practical problem-solving skills. My experience spans from developing modern web applications to hands-on locksmith and low voltage work.
+                  As a Full Stack Developer and Field Technician, I combine
+                  technical expertise with practical problem-solving skills. My
+                  experience spans from developing modern web applications to
+                  hands-on locksmith and low voltage work.
                 </motion.p>
                 <motion.p
                   className="text-lg sm:text-xl text-text-secondary text-center"
@@ -289,7 +350,10 @@ export default function About() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                  I lead teams, manage projects, and deliver solutions that make a real impact. Whether it's coding, fixing, or building, I'm passionate about creating efficient, reliable systems that solve real-world problems.
+                  I lead teams, manage projects, and deliver solutions that make
+                  a real impact. Whether it's coding, fixing, or building, I'm
+                  passionate about creating efficient, reliable systems that
+                  solve real-world problems.
                 </motion.p>
                 <motion.span
                   className="mt-4 text-base text-emerald-500 font-mono tracking-wide text-center"

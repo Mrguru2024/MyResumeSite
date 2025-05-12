@@ -28,7 +28,7 @@ function useTypingEffect(text: string, speed = 40) {
 export default function Hero() {
   const { displayed: typedSubtitle, done: typingDone } = useTypingEffect(
     TYPING_TEXT,
-    40
+    40,
   );
   const containerRef = useRef<HTMLDivElement>(null);
   const particleRef = useRef<HTMLCanvasElement>(null);

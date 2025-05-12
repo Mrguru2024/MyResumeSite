@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { createPortal } from "react-dom";
-import styles from './BlueprintRoute.module.css';
+import styles from "./BlueprintRoute.module.css";
 
 const SECTIONS = [
   {
@@ -70,7 +70,7 @@ const SOUNDS = {
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(true);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
 
   useEffect(() => {
@@ -149,7 +149,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -184,7 +184,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -284,8 +284,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 
@@ -336,11 +336,45 @@ export default function BlueprintRoute() {
         <circle cx="800" cy="1000" r="16" className={styles.milestone} />
         <circle cx="600" cy="1300" r="16" className={styles.milestone} />
         {/* Powered plug marker for Portfolio (last node) */}
-        <g className={styles.milestone} tabIndex={0} role="button" aria-label="Portfolio">
-          <circle cx="600" cy="1300" r="22" fill="#fbbf24" filter="url(#glow)" />
-          <rect x={600 - 10} y={1300 - 8} width={20} height={16} rx={4} fill="#fff" stroke="#fbbf24" strokeWidth={2} />
-          <rect x={600 - 4} y={1300 - 4} width={3} height={8} rx={1} fill="#fbbf24" />
-          <rect x={600 + 1} y={1300 - 4} width={3} height={8} rx={1} fill="#fbbf24" />
+        <g
+          className={styles.milestone}
+          tabIndex={0}
+          role="button"
+          aria-label="Portfolio"
+        >
+          <circle
+            cx="600"
+            cy="1300"
+            r="22"
+            fill="#fbbf24"
+            filter="url(#glow)"
+          />
+          <rect
+            x={600 - 10}
+            y={1300 - 8}
+            width={20}
+            height={16}
+            rx={4}
+            fill="#fff"
+            stroke="#fbbf24"
+            strokeWidth={2}
+          />
+          <rect
+            x={600 - 4}
+            y={1300 - 4}
+            width={3}
+            height={8}
+            rx={1}
+            fill="#fbbf24"
+          />
+          <rect
+            x={600 + 1}
+            y={1300 - 4}
+            width={3}
+            height={8}
+            rx={1}
+            fill="#fbbf24"
+          />
           <motion.polygon
             points="600,1302 598,1308 601,1308 599,1314 604,1307.5 601.5,1307.5"
             fill="#fbbf24"
@@ -352,7 +386,7 @@ export default function BlueprintRoute() {
               filter: [
                 "drop-shadow(0 0 8px #fde047)",
                 "drop-shadow(0 0 16px #fbbf24)",
-                "drop-shadow(0 0 8px #fde047)"
+                "drop-shadow(0 0 8px #fde047)",
               ],
             }}
             transition={{
@@ -367,7 +401,8 @@ export default function BlueprintRoute() {
           r="20"
           fill="#F97316"
           style={{
-            offsetPath: "path('M100 150 C300 300, 900 100, 1100 250 S1300 500, 1000 700 Q900 800, 800 1000 T600 1300')",
+            offsetPath:
+              "path('M100 150 C300 300, 900 100, 1100 250 S1300 500, 1000 700 Q900 800, 800 1000 T600 1300')",
             offsetDistance: scrollProgress,
           }}
           filter="url(#glow)"

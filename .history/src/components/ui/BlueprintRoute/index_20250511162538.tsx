@@ -58,7 +58,7 @@ export default function BlueprintRoute() {
       setSectionCenters(centers);
       const lastSection = centers[centers.length - 1] || 0;
       setSvgHeight(
-        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET
+        lastSection - buttonPosition + window.innerHeight + MARKER_OFFSET,
       );
       setViewportHeight(window.innerHeight);
       measured = true;
@@ -93,7 +93,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -129,12 +129,25 @@ export default function BlueprintRoute() {
 
   // Calculate marker positions
   const markerRefs = useRef<(SVGCircleElement | null)[]>([]);
-  const svgRect = svgRef.current ? svgRef.current.getBoundingClientRect() : null;
-  const beginJourneyBtn = typeof window !== 'undefined' ? document.querySelector('[data-journey-button]') : null;
-  const buttonRect = beginJourneyBtn ? beginJourneyBtn.getBoundingClientRect() : null;
-  const containerRect = typeof window !== 'undefined' && window.heroContainerRef ? window.heroContainerRef.getBoundingClientRect() : null;
+  const svgRect = svgRef.current
+    ? svgRef.current.getBoundingClientRect()
+    : null;
+  const beginJourneyBtn =
+    typeof window !== "undefined"
+      ? document.querySelector("[data-journey-button]")
+      : null;
+  const buttonRect = beginJourneyBtn
+    ? beginJourneyBtn.getBoundingClientRect()
+    : null;
+  const containerRect =
+    typeof window !== "undefined" && window.heroContainerRef
+      ? window.heroContainerRef.getBoundingClientRect()
+      : null;
   const buttonPosition = buttonRect ? buttonRect.bottom + window.scrollY : 0;
-  const buttonCenterX = buttonRect && containerRect ? (buttonRect.left + buttonRect.width / 2) - containerRect.left : X_LEFT;
+  const buttonCenterX =
+    buttonRect && containerRect
+      ? buttonRect.left + buttonRect.width / 2 - containerRect.left
+      : X_LEFT;
   const markerPoints = SECTIONS.map((s, i) => {
     if (i === 0) {
       return {
@@ -142,7 +155,7 @@ export default function BlueprintRoute() {
         y: START_MARKER_GAP,
       };
     }
-    const headerY = headerCenters[i] ?? (sectionCenters[i] ?? 0);
+    const headerY = headerCenters[i] ?? sectionCenters[i] ?? 0;
     return {
       x: i % 2 === 0 ? X_LEFT : X_RIGHT,
       y: headerY - buttonPosition,
@@ -180,8 +193,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 

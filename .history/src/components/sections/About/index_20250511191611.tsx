@@ -157,7 +157,7 @@ export default function About() {
                   aria-pressed={isFlipped}
                   className={cn(
                     "w-full h-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10 select-none transition-all duration-300",
-                    isFlipped ? "opacity-0 pointer-events-none" : "opacity-100"
+                    isFlipped ? "opacity-0 pointer-events-none" : "opacity-100",
                   )}
                   style={{
                     boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -260,7 +260,9 @@ export default function About() {
                   aria-pressed={!isFlipped}
                   className={cn(
                     "w-full h-full rounded-2xl p-4 sm:p-6 md:p-10 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl z-10 select-none transition-all duration-300",
-                    !isFlipped ? "opacity-0 pointer-events-none" : "opacity-100"
+                    !isFlipped
+                      ? "opacity-0 pointer-events-none"
+                      : "opacity-100",
                   )}
                   style={{
                     boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",

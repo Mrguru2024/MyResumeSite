@@ -48,7 +48,7 @@ const SKILLS = [
 export default function Skills() {
   const [filter, setFilter] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<(typeof SKILLS)[0] | null>(
-    null
+    null,
   );
 
   const filteredSkills = filter
@@ -66,7 +66,7 @@ export default function Skills() {
             className={cn(
               "px-4 py-2 rounded-full border border-card-border text-text-secondary hover:text-text-primary hover:bg-card-hover transition",
               !filter &&
-                "bg-skill-fullstack/10 text-text-primary border-skill-fullstack"
+                "bg-skill-fullstack/10 text-text-primary border-skill-fullstack",
             )}
             onClick={() => setFilter(null)}
           >
@@ -80,7 +80,7 @@ export default function Skills() {
                 filter === cat.key &&
                   `bg-${cat.color.replace("text-", "")}/10 text-${
                     cat.color
-                  } border-${cat.color.replace("text-", "")}`
+                  } border-${cat.color.replace("text-", "")}`,
               )}
               onClick={() => setFilter(cat.key)}
             >
@@ -97,7 +97,7 @@ export default function Skills() {
               className={cn(
                 "bg-card-bg border border-card-border rounded-xl p-6 shadow-lg cursor-pointer transition-colors hover:bg-card-hover",
                 SKILL_CATEGORIES.find((cat) => cat.key === skill.category)
-                  ?.color
+                  ?.color,
               )}
               onClick={() => setSelectedSkill(skill)}
               tabIndex={0}
@@ -108,7 +108,7 @@ export default function Skills() {
                 className={cn(
                   "text-xl font-bold mb-2",
                   SKILL_CATEGORIES.find((cat) => cat.key === skill.category)
-                    ?.color
+                    ?.color,
                 )}
               >
                 {skill.name}
@@ -144,8 +144,8 @@ export default function Skills() {
                   className={cn(
                     "text-2xl font-bold mb-4",
                     SKILL_CATEGORIES.find(
-                      (cat) => cat.key === selectedSkill.category
-                    )?.color
+                      (cat) => cat.key === selectedSkill.category,
+                    )?.color,
                   )}
                 >
                   {selectedSkill.name}
@@ -157,13 +157,13 @@ export default function Skills() {
                   className={cn(
                     "inline-block px-3 py-1 rounded-full text-xs font-semibold mt-2",
                     SKILL_CATEGORIES.find(
-                      (cat) => cat.key === selectedSkill.category
-                    )?.color
+                      (cat) => cat.key === selectedSkill.category,
+                    )?.color,
                   )}
                 >
                   {
                     SKILL_CATEGORIES.find(
-                      (cat) => cat.key === selectedSkill.category
+                      (cat) => cat.key === selectedSkill.category,
                     )?.label
                   }
                 </span>

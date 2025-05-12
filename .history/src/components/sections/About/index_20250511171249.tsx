@@ -153,7 +153,7 @@ export default function About() {
                 <motion.div
                   className={cn(
                     "absolute w-full h-full rounded-2xl p-6 sm:p-10 md:p-14 shadow-2xl flex flex-col items-center justify-center border-2 border-transparent bg-white/30 dark:bg-background-dark/60 backdrop-blur-xl z-10",
-                    isFlipped && "pointer-events-none opacity-0"
+                    isFlipped && "pointer-events-none opacity-0",
                   )}
                   style={{
                     boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",
@@ -228,7 +228,7 @@ export default function About() {
                 <motion.div
                   className={cn(
                     "absolute w-full h-full rounded-2xl p-6 sm:p-10 md:p-14 shadow-2xl flex flex-col justify-center border-2 border-transparent bg-background-dark/90 dark:bg-white/90 backdrop-blur-xl rotate-y-180",
-                    !isFlipped && "pointer-events-none opacity-0"
+                    !isFlipped && "pointer-events-none opacity-0",
                   )}
                   style={{
                     boxShadow: "0 8px 40px 0 #10b98122, 0 1.5px 8px #0002",

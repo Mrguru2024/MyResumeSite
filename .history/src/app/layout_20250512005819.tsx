@@ -7,10 +7,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://anthonymrgurufeaster.online"),
   title: {
-    default: "Anthony 'Mrguru' Feaster | Full Stack Developer & Low Voltage Specialist",
-    template: "%s | Anthony 'Mrguru' Feaster"
+    default:
+      "Anthony 'Mrguru' Feaster | Full Stack Developer & Low Voltage Specialist",
+    template: "%s | Anthony 'Mrguru' Feaster",
   },
-  description: "Full Stack Developer, Locksmith Lead, and Low Voltage Specialist with expertise in JavaScript, TypeScript, Next.js, and hands-on technical solutions. View my interactive resume and portfolio.",
+  description:
+    "Full Stack Developer, Locksmith Lead, and Low Voltage Specialist with expertise in JavaScript, TypeScript, Next.js, and hands-on technical solutions. View my interactive resume and portfolio.",
   keywords: [
     "Anthony Feaster",
     "Mrguru",
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     "Web Development",
     "Software Engineer",
     "Portfolio",
-    "Resume"
+    "Resume",
   ],
   authors: [{ name: "Anthony 'Mrguru' Feaster" }],
   creator: "Anthony 'Mrguru' Feaster",
@@ -39,21 +41,25 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://anthonymrgurufeaster.online",
     siteName: "Anthony 'Mrguru' Feaster",
-    title: "Anthony 'Mrguru' Feaster | Full Stack Developer & Low Voltage Specialist",
-    description: "Full Stack Developer, Locksmith Lead, and Low Voltage Specialist with expertise in JavaScript, TypeScript, Next.js, and hands-on technical solutions.",
+    title:
+      "Anthony 'Mrguru' Feaster | Full Stack Developer & Low Voltage Specialist",
+    description:
+      "Full Stack Developer, Locksmith Lead, and Low Voltage Specialist with expertise in JavaScript, TypeScript, Next.js, and hands-on technical solutions.",
     images: [
       {
         url: "/og-image.jpg", // You'll need to create this image
         width: 1200,
         height: 630,
-        alt: "Anthony 'Mrguru' Feaster - Full Stack Developer & Low Voltage Specialist"
-      }
-    ]
+        alt: "Anthony 'Mrguru' Feaster - Full Stack Developer & Low Voltage Specialist",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anthony 'Mrguru' Feaster | Full Stack Developer & Low Voltage Specialist",
-    description: "Full Stack Developer, Locksmith Lead, and Low Voltage Specialist with expertise in JavaScript, TypeScript, Next.js, and hands-on technical solutions.",
+    title:
+      "Anthony 'Mrguru' Feaster | Full Stack Developer & Low Voltage Specialist",
+    description:
+      "Full Stack Developer, Locksmith Lead, and Low Voltage Specialist with expertise in JavaScript, TypeScript, Next.js, and hands-on technical solutions.",
     images: ["/og-image.jpg"], // Same image as OpenGraph
     creator: "@mrguru", // Your Twitter handle
   },
@@ -93,17 +99,17 @@ export default function RootLayout({
         {/* Top-level React test button for guaranteed interactivity */}
         <button
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 24,
             left: 24,
             zIndex: 2147483647,
-            background: 'blue',
-            color: 'white',
-            pointerEvents: 'auto',
+            background: "blue",
+            color: "white",
+            pointerEvents: "auto",
             fontSize: 24,
-            padding: '16px 32px',
+            padding: "16px 32px",
           }}
-          onClick={() => alert('Top-level React button clicked')}
+          onClick={() => alert("Top-level React button clicked")}
         >
           Top-level React Button
         </button>

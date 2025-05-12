@@ -116,7 +116,7 @@ function useSoundManager() {
   const [isMuted, setIsMuted] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
   const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
-    {} as any
+    {} as any,
   );
   const [isInitialized, setIsInitialized] = useState(false);
 
@@ -180,7 +180,7 @@ function useSoundManager() {
         }
       }
     },
-    [isInitialized, isMuted, hasMounted]
+    [isInitialized, isMuted, hasMounted],
   );
 
   const toggleMute = useCallback(() => {
@@ -205,7 +205,7 @@ function SoundToggle({
         onToggle();
       }}
       className="fixed top-4 left-4 z-[99999] bg-red-500 border-4 border-yellow-400 rounded-full p-4 shadow-2xl pointer-events-auto hover:scale-110 transition-transform"
-      style={{ position: 'fixed', zIndex: 99999 }}
+      style={{ position: "fixed", zIndex: 99999 }}
       aria-label={isMuted ? "Enable sound" : "Disable sound"}
     >
       {isMuted ? (
@@ -261,7 +261,7 @@ export default function BlueprintRoute() {
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, toggleMute } = useSoundManager();
   const [markerPoints, setMarkerPoints] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
   const [sectionOffsets, setSectionOffsets] = useState<number[]>([]);
   const markerOffset = 40;
@@ -417,8 +417,8 @@ export default function BlueprintRoute() {
       // 2. Other markers: for each section header (excluding hero)
       const sectionHeaders = Array.from(
         document.querySelectorAll(
-          "[data-blueprint-section] h2, [data-blueprint-section] h1"
-        )
+          "[data-blueprint-section] h2, [data-blueprint-section] h1",
+        ),
       );
       sectionHeaders.forEach((header, i) => {
         const rect = header.getBoundingClientRect();
@@ -494,7 +494,7 @@ export default function BlueprintRoute() {
     const end = sectionOffsets[idx + 1] || start + 1;
     const sectionProgress = Math.min(
       1,
-      Math.max(0, (viewCenter - start) / (end - start))
+      Math.max(0, (viewCenter - start) / (end - start)),
     );
 
     // Get the current and next marker points
@@ -545,8 +545,8 @@ export default function BlueprintRoute() {
       setSvgHeight(
         Math.max(
           window.innerHeight,
-          markerPoints[markerPoints.length - 1].y + 200
-        )
+          markerPoints[markerPoints.length - 1].y + 200,
+        ),
       );
     }
   }, [markerPoints]);
@@ -578,7 +578,7 @@ export default function BlueprintRoute() {
     <>
       {/* Sound toggle button at the root level */}
       <SoundToggle isMuted={isMuted} onToggle={toggleMute} />
-      
+
       <div className={styles.routeContainer}>
         <svg
           ref={svgRef}

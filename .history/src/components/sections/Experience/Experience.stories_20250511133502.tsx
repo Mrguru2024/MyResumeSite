@@ -15,4 +15,4 @@ type Story = StoryObj<typeof Experience>;
 
 export const Default: Story = {
   args: {},
-}; 
+};

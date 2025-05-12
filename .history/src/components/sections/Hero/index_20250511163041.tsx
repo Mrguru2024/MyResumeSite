@@ -32,7 +32,10 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center relative pt-32">
       {/* Content */}
-      <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent relative">
+      <div
+        ref={containerRef}
+        className="container mx-auto px-4 sm:px-6 lg:px-8 bg-transparent relative"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

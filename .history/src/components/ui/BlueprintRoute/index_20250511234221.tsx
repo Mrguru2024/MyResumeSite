@@ -1,5 +1,11 @@
 "use client";
-import { useEffect, useRef, useState, useLayoutEffect, useCallback } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+  useCallback,
+} from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { createPortal } from "react-dom";
 import styles from "./BlueprintRoute.module.css";
@@ -109,7 +115,9 @@ const SOUNDS = {
 // Sound manager hook
 function useSoundManager() {
   const [isMuted, setIsMuted] = useState(false);
-  const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>({} as any);
+  const sounds = useRef<Record<keyof typeof SOUNDS, HTMLAudioElement>>(
+    {} as any,
+  );
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
@@ -131,32 +139,41 @@ function useSoundManager() {
     };
   }, []);
 
-  const play = useCallback((sound: keyof typeof SOUNDS) => {
-    if (!isInitialized || isMuted) return;
-    
-    const audio = sounds.current[sound];
-    if (audio) {
-      // Reset the audio to start
-      audio.currentTime = 0;
-      // Play with user interaction
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.log("Audio playback failed:", error);
-        });
+  const play = useCallback(
+    (sound: keyof typeof SOUNDS) => {
+      if (!isInitialized || isMuted) return;
+
+      const audio = sounds.current[sound];
+      if (audio) {
+        // Reset the audio to start
+        audio.currentTime = 0;
+        // Play with user interaction
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.log("Audio playback failed:", error);
+          });
+        }
       }
-    }
-  }, [isInitialized, isMuted]);
+    },
+    [isInitialized, isMuted],
+  );
 
   const toggleMute = useCallback(() => {
-    setIsMuted(prev => !prev);
+    setIsMuted((prev) => !prev);
   }, []);
 
   return { play, isMuted, toggleMute };
 }
 
 // Sound toggle button component
-function SoundToggle({ isMuted, onToggle }: { isMuted: boolean; onToggle: () => void }) {
+function SoundToggle({
+  isMuted,
+  onToggle,
+}: {
+  isMuted: boolean;
+  onToggle: () => void;
+}) {
   return (
     <button
       onClick={onToggle}
@@ -164,16 +181,36 @@ function SoundToggle({ isMuted, onToggle }: { isMuted: boolean; onToggle: () => 
       aria-label={isMuted ? "Enable sound" : "Disable sound"}
     >
       {isMuted ? (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-          <line x1="23" y1="9" x2="17" y2="15"/>
-          <line x1="17" y1="9" x2="23" y2="15"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
         </svg>
       )}
     </button>
@@ -196,7 +233,7 @@ export default function BlueprintRoute() {
   }>({ show: false, index: -1, x: 0, y: 0 });
   const { play, isMuted, toggleMute } = useSoundManager();
   const [markerPoints, setMarkerPoints] = useState<{ x: number; y: number }[]>(
-    []
+    [],
   );
   const [sectionOffsets, setSectionOffsets] = useState<number[]>([]);
   const markerOffset = 40;
@@ -344,8 +381,8 @@ export default function BlueprintRoute() {
       // 2. Other markers: for each section header (excluding hero)
       const sectionHeaders = Array.from(
         document.querySelectorAll(
-          "[data-blueprint-section] h2, [data-blueprint-section] h1"
-        )
+          "[data-blueprint-section] h2, [data-blueprint-section] h1",
+        ),
       );
       sectionHeaders.forEach((header, i) => {
         const rect = header.getBoundingClientRect();
@@ -421,7 +458,7 @@ export default function BlueprintRoute() {
     const end = sectionOffsets[idx + 1] || start + 1;
     const sectionProgress = Math.min(
       1,
-      Math.max(0, (viewCenter - start) / (end - start))
+      Math.max(0, (viewCenter - start) / (end - start)),
     );
 
     // Get the current and next marker points
@@ -472,8 +509,8 @@ export default function BlueprintRoute() {
       setSvgHeight(
         Math.max(
           window.innerHeight,
-          markerPoints[markerPoints.length - 1].y + 200
-        )
+          markerPoints[markerPoints.length - 1].y + 200,
+        ),
       );
     }
   }, [markerPoints]);

@@ -15,4 +15,4 @@ type Story = StoryObj<typeof About>;
 
 export const Default: Story = {
   args: {},
-}; 
+};

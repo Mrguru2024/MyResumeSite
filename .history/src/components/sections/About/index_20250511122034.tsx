@@ -36,15 +36,21 @@ export const About = ({ summary, expandedSummary, avatarUrl }: AboutProps) => {
               className="w-32 h-32 rounded-full mb-6 object-cover"
               whileHover={{ scale: 1.05 }}
             />
-            <h2 className="text-3xl font-bold text-text-primary mb-4">About Me</h2>
+            <h2 className="text-3xl font-bold text-text-primary mb-4">
+              About Me
+            </h2>
             <p className="text-text-secondary">{summary}</p>
             <p className="text-text-accent mt-4">Click to learn more</p>
           </div>
 
           {/* Back of card */}
           <div className="absolute w-full h-full backface-hidden bg-card-bg border border-card-border rounded-xl p-8 rotate-y-180">
-            <h2 className="text-3xl font-bold text-text-primary mb-4">Professional Summary</h2>
-            <p className="text-text-secondary leading-relaxed">{expandedSummary}</p>
+            <h2 className="text-3xl font-bold text-text-primary mb-4">
+              Professional Summary
+            </h2>
+            <p className="text-text-secondary leading-relaxed">
+              {expandedSummary}
+            </p>
             <p className="text-text-accent mt-4">Click to flip back</p>
           </div>
         </div>

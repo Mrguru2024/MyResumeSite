@@ -31,12 +31,12 @@ export default function SoundToggle() {
 
     window.addEventListener(
       SOUND_STATE_CHANGE,
-      handleSoundStateChange as EventListener
+      handleSoundStateChange as EventListener,
     );
     return () => {
       window.removeEventListener(
         SOUND_STATE_CHANGE,
-        handleSoundStateChange as EventListener
+        handleSoundStateChange as EventListener,
       );
     };
   }, [hasMounted]);
@@ -51,7 +51,7 @@ export default function SoundToggle() {
       window.dispatchEvent(
         new CustomEvent(SOUND_STATE_CHANGE, {
           detail: { isMuted: newState },
-        })
+        }),
       );
     } catch (error) {
       console.error("Error updating sound state:", error);

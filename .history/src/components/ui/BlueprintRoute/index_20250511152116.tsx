@@ -68,7 +68,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -87,10 +87,7 @@ export default function BlueprintRoute() {
     const baseY = i === 0 ? 0 : (y ?? 0) - buttonPosition;
     // Only add padding to last marker
     const padding = MARKER_RADIUS * 2;
-    const adjustedY =
-      i === SECTIONS.length - 1
-        ? baseY - padding
-        : baseY;
+    const adjustedY = i === SECTIONS.length - 1 ? baseY - padding : baseY;
     return {
       x: i % 2 === 0 ? X_LEFT : X_RIGHT,
       y: adjustedY,
@@ -120,8 +117,8 @@ export default function BlueprintRoute() {
         1,
         Math.max(
           0,
-          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1)
-        )
+          (scrollY + viewportHeight / 2 - sectionCenters[0]) / (total || 1),
+        ),
       )
     : 0;
 

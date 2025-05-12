@@ -46,7 +46,7 @@ export default function BlueprintRoute() {
       const winH = window.innerHeight;
       const idx = sectionCenters.findIndex(
         (center, i) =>
-          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -83,8 +83,8 @@ export default function BlueprintRoute() {
     1,
     Math.max(
       0,
-      (scrollY + window.innerHeight / 2 - sectionCenters[0]) / (total || 1)
-    )
+      (scrollY + window.innerHeight / 2 - sectionCenters[0]) / (total || 1),
+    ),
   );
   function getTravelerPos(t: number) {
     if (markerPoints.length < 2) return { x: X_CENTER, y: 0 };
@@ -169,7 +169,8 @@ export default function BlueprintRoute() {
             whileTap={{ scale: 0.95 }}
             animate={{
               filter: active === i ? "url(#pulse)" : "none",
-              boxShadow: active === i ? `0 0 20px ${SECTIONS[i].color}` : "none",
+              boxShadow:
+                active === i ? `0 0 20px ${SECTIONS[i].color}` : "none",
             }}
             transition={{ duration: 0.3 }}
           />

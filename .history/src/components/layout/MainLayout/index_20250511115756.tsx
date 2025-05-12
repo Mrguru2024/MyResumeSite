@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import { Navigation } from '../Navigation';
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { Navigation } from "../Navigation";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -21,4 +21,4 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       </motion.main>
     </div>
   );
-}; 
+};

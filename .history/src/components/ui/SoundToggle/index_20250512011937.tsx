@@ -28,10 +28,10 @@ export default function SoundToggle() {
       onClick={toggleMute}
       className="fixed top-4 left-4 z-[999999] bg-red-500 border-4 border-yellow-400 rounded-full p-4 shadow-2xl hover:scale-110 transition-transform cursor-pointer"
       style={{
-        position: 'fixed',
+        position: "fixed",
         zIndex: 999999,
-        pointerEvents: 'auto',
-        isolation: 'isolate',
+        pointerEvents: "auto",
+        isolation: "isolate",
       }}
       aria-label={isMuted ? "Enable sound" : "Disable sound"}
     >
@@ -72,9 +72,5 @@ export default function SoundToggle() {
   );
 
   // Use createPortal to render at the root level
-  return createPortal(
-    button,
-    document.body,
-    'sound-toggle-portal'
-  );
+  return createPortal(button, document.body, "sound-toggle-portal");
 }

@@ -39,8 +39,9 @@ export default function BlueprintRoute() {
     function onScroll() {
       setScrollY(window.scrollY);
       const winH = window.innerHeight;
-      const idx = sectionCenters.findIndex((center, i) =>
-        window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity)
+      const idx = sectionCenters.findIndex(
+        (center, i) =>
+          window.scrollY + winH / 2 < (sectionCenters[i + 1] ?? Infinity),
       );
       setActive(idx === -1 ? SECTIONS.length - 1 : idx);
     }
@@ -50,13 +51,14 @@ export default function BlueprintRoute() {
   }, [sectionCenters]);
 
   // Calculate traveler position (0-1) based on scroll
-  const total = sectionCenters[sectionCenters.length - 1] - sectionCenters[0] || 1;
+  const total =
+    sectionCenters[sectionCenters.length - 1] - sectionCenters[0] || 1;
   const progress = Math.min(
     1,
     Math.max(
       0,
-      (scrollY + window.innerHeight / 2 - sectionCenters[0]) / (total || 1)
-    )
+      (scrollY + window.innerHeight / 2 - sectionCenters[0]) / (total || 1),
+    ),
   );
 
   // Interpolate traveler position along the path
@@ -72,13 +74,18 @@ export default function BlueprintRoute() {
   const travelerY = getTravelerY(progress);
 
   // Build SVG path string (vertical, but can be curved/zig-zag for more style)
-  const markerYs = sectionCenters.map((c) => (c ?? 0) - (sectionCenters[0] ?? 0));
+  const markerYs = sectionCenters.map(
+    (c) => (c ?? 0) - (sectionCenters[0] ?? 0),
+  );
   const pathD = markerYs.length
-    ? markerYs.map((y, i) => `${i === 0 ? "M" : "L"} 32 ${y}` ).join(" ")
+    ? markerYs.map((y, i) => `${i === 0 ? "M" : "L"} 32 ${y}`).join(" ")
     : "";
 
   return (
-    <div className="fixed left-1/2 top-0 -translate-x-1/2 z-50 flex flex-col items-center w-32 pointer-events-none" style={{ height: "100vh" }}>
+    <div
+      className="fixed left-1/2 top-0 -translate-x-1/2 z-50 flex flex-col items-center w-32 pointer-events-none"
+      style={{ height: "100vh" }}
+    >
       <svg
         ref={svgRef}
         width={64}
@@ -105,7 +112,9 @@ export default function BlueprintRoute() {
               strokeWidth={3}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
               onClick={() => {
-                document.getElementById(SECTIONS[i].id)?.scrollIntoView({ behavior: "smooth" });
+                document
+                  .getElementById(SECTIONS[i].id)
+                  ?.scrollIntoView({ behavior: "smooth" });
               }}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
@@ -122,7 +131,13 @@ export default function BlueprintRoute() {
             </text>
             {/* Tooltip */}
             {active === i && (
-              <foreignObject x={40} y={y - 20} width={120} height={40} style={{ pointerEvents: "none" }}>
+              <foreignObject
+                x={40}
+                y={y - 20}
+                width={120}
+                height={40}
+                style={{ pointerEvents: "none" }}
+              >
                 <div className="bg-skill-fullstack text-white text-xs rounded px-2 py-1 shadow-lg animate-fade-in pointer-events-none">
                   {SECTIONS[i].label}
                 </div>

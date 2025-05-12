@@ -26,7 +26,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<GitHubRepo | null>(
-    null
+    null,
   );
   const [previewError, setPreviewError] = useState<Record<string, boolean>>({});
 
@@ -67,10 +67,29 @@ export default function Projects() {
           <h2 className="text-3xl sm:text-4xl font-bold text-text-primary mb-12 text-center flex items-center justify-center gap-3">
             <span className="inline-block align-middle">Projects</span>
             <span className="inline-block align-middle">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="11" cy="11" r="8" fill="#10b981" filter="url(#glow)" />
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                  fill="#10b981"
+                  filter="url(#glow)"
+                />
                 <defs>
-                  <filter id="glow" x="-4" y="-4" width="30" height="30" filterUnits="userSpaceOnUse">
+                  <filter
+                    id="glow"
+                    x="-4"
+                    y="-4"
+                    width="30"
+                    height="30"
+                    filterUnits="userSpaceOnUse"
+                  >
                     <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                     <feMerge>
                       <feMergeNode in="coloredBlur" />
@@ -92,7 +111,7 @@ export default function Projects() {
                 .sort(
                   (a, b) =>
                     new Date(b.updated_at).getTime() -
-                    new Date(a.updated_at).getTime()
+                    new Date(a.updated_at).getTime(),
                 )
                 .slice(0, 6)
                 .map((project, idx) => (

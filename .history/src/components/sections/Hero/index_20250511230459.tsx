@@ -54,7 +54,7 @@ export default function Hero() {
     function draw() {
       if (!ctx) return;
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      dots.forEach(dot => {
+      dots.forEach((dot) => {
         // Animate y position with a gentle sine wave
         const y = dot.y + Math.sin(Date.now() * 0.0005 + dot.phase) * 8;
         ctx.beginPath();
@@ -268,7 +268,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background-dark/80 to-transparent" />
       </motion.div>
       {/* Blueprint Dots Particle Canvas */}
-      <canvas ref={particleRef} className="absolute inset-0 w-full h-full z-0 pointer-events-none" aria-hidden />
+      <canvas
+        ref={particleRef}
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        aria-hidden
+      />
       {/* Content */}
       <div
         ref={containerRef}

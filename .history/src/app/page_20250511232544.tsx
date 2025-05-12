@@ -115,18 +115,23 @@ export default function Home() {
             </p>
             {/* Request Resume Download Form */}
             <div className="w-full max-w-lg bg-white/10 dark:bg-background-dark/60 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/20 flex flex-col gap-6">
-              <h3 className="text-2xl font-bold text-text-primary mb-4 text-center">Request a Downloadable Resume</h3>
+              <h3 className="text-2xl font-bold text-text-primary mb-4 text-center">
+                Request a Downloadable Resume
+              </h3>
               <form
-                onSubmit={e => {
+                onSubmit={(e) => {
                   e.preventDefault();
                   // TODO: handle download logic (show link or trigger download)
-                  alert('Resume download link would be provided here.');
+                  alert("Resume download link would be provided here.");
                 }}
                 autoComplete="off"
                 className="flex flex-col gap-5"
               >
                 <div>
-                  <label htmlFor="download-fullname" className="block text-text-primary font-semibold mb-2">
+                  <label
+                    htmlFor="download-fullname"
+                    className="block text-text-primary font-semibold mb-2"
+                  >
                     Full Name
                   </label>
                   <input
@@ -138,7 +143,10 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="download-company" className="block text-text-primary font-semibold mb-2">
+                  <label
+                    htmlFor="download-company"
+                    className="block text-text-primary font-semibold mb-2"
+                  >
                     Company Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -150,7 +158,10 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="download-phone" className="block text-text-primary font-semibold mb-2">
+                  <label
+                    htmlFor="download-phone"
+                    className="block text-text-primary font-semibold mb-2"
+                  >
                     Phone Number <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -162,7 +173,10 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="download-email" className="block text-text-primary font-semibold mb-2">
+                  <label
+                    htmlFor="download-email"
+                    className="block text-text-primary font-semibold mb-2"
+                  >
                     Email
                   </label>
                   <input
