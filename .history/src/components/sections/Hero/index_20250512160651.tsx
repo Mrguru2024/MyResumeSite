@@ -195,15 +195,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen w-screen flex items-center justify-center relative pt-32 overflow-hidden bg-transparent">
+    <section className="min-h-screen flex items-center justify-center relative pt-32 overflow-hidden bg-transparent">
       <HeroGlassParticles />
-      {/* Enhanced gradient overlay for ultra-smooth bottom transition in both themes */}
-      <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none z-10 bg-gradient-to-b from-transparent via-slate-100/80 to-white dark:to-background" />
       {/* Blueprint Dots Particle Canvas */}
       {/* Content */}
       <div
         ref={containerRef}
-        className="w-full px-4 sm:px-6 lg:px-8 relative z-10 bg-transparent flex flex-col items-center"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 bg-transparent"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}

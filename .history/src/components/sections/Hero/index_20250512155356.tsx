@@ -3,7 +3,6 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
-import HeroGlassParticles from '@/components/ui/GlobalGlassParticles';
 
 const TYPING_TEXT = "I fix. I code. I lead. I build what's needed.";
 
@@ -195,16 +194,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen w-screen flex items-center justify-center relative pt-32 overflow-hidden bg-transparent">
-      <HeroGlassParticles />
-      {/* Enhanced gradient overlay for ultra-smooth bottom transition in both themes */}
-      <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none z-10 bg-gradient-to-b from-transparent via-slate-100/80 to-white dark:to-background" />
+    <section className="min-h-screen flex items-center justify-center relative pt-32 overflow-hidden bg-transparent">
+      {/* Add a subtle, light overlay for contrast */}
+      <div className="absolute inset-0 pointer-events-none bg-white/10 dark:bg-white/5" />
       {/* Blueprint Dots Particle Canvas */}
       {/* Content */}
-      <div
-        ref={containerRef}
-        className="w-full px-4 sm:px-6 lg:px-8 relative z-10 bg-transparent flex flex-col items-center"
-      >
+      <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 bg-transparent">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

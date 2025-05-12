@@ -3,7 +3,6 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
-import HeroGlassParticles from '@/components/ui/GlobalGlassParticles';
 
 const TYPING_TEXT = "I fix. I code. I lead. I build what's needed.";
 
@@ -195,16 +194,220 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen w-screen flex items-center justify-center relative pt-32 overflow-hidden bg-transparent">
-      <HeroGlassParticles />
-      {/* Enhanced gradient overlay for ultra-smooth bottom transition in both themes */}
-      <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none z-10 bg-gradient-to-b from-transparent via-slate-100/80 to-white dark:to-background" />
-      {/* Blueprint Dots Particle Canvas */}
-      {/* Content */}
-      <div
-        ref={containerRef}
-        className="w-full px-4 sm:px-6 lg:px-8 relative z-10 bg-transparent flex flex-col items-center"
+    <section className="min-h-screen flex items-center justify-center relative pt-32 overflow-hidden">
+      {/* Animated Blueprint SVG Background (subtle, blended) */}
+      <motion.div
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse at 60% 40%, 
+              hsl(var(--background)) 0%,
+              hsl(var(--background) / 0.95) 30%,
+              hsl(var(--background) / 0.8) 60%,
+              transparent 100%
+            )
+          `,
+        }}
+        aria-hidden
       >
+        {/* Glass morphism background layers */}
+        <div className="absolute inset-0 backdrop-blur-3xl bg-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/5 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_50%)]" />
+
+        <motion.svg
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.18 } },
+          }}
+          className="w-full h-full"
+          viewBox="0 0 1440 900"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Blueprint grid */}
+          <motion.rect
+            x="0"
+            y="0"
+            width="1440"
+            height="900"
+            fill="hsl(var(--background))"
+            stroke="hsl(var(--primary))"
+            strokeWidth="0.5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.15 }}
+            transition={{ duration: 1 }}
+          />
+          {/* Office walls (animated rectangles) */}
+          <motion.rect
+            x="400"
+            y="250"
+            width="640"
+            height="400"
+            stroke="hsl(var(--primary))"
+            strokeWidth="3"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            style={{ opacity: 0.25 }}
+          />
+          {/* Interior wall */}
+          <motion.line
+            x1="720"
+            y1="250"
+            x2="720"
+            y2="650"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            strokeDasharray="400"
+            strokeDashoffset="400"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            style={{ opacity: 0.18 }}
+          />
+          {/* Door symbol (arc + swing) */}
+          <motion.path
+            d="M720 650 Q740 670 760 650"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            style={{ opacity: 0.22 }}
+          />
+          <motion.line
+            x1="760"
+            y1="650"
+            x2="760"
+            y2="630"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            strokeDasharray="20"
+            strokeDashoffset="20"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            style={{ opacity: 0.22 }}
+          />
+          {/* Window symbols (short lines) */}
+          <motion.line
+            x1="400"
+            y1="400"
+            x2="420"
+            y2="400"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            strokeDasharray="20"
+            strokeDashoffset="20"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 0.5, delay: 1 }}
+            style={{ opacity: 0.22 }}
+          />
+          <motion.line
+            x1="1020"
+            y1="400"
+            x2="1040"
+            y2="400"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            strokeDasharray="20"
+            strokeDashoffset="20"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+            style={{ opacity: 0.22 }}
+          />
+          {/* Stairs symbol (zig-zag lines) */}
+          <motion.polyline
+            points="420,650 440,630 460,650 480,630 500,650"
+            stroke="hsl(var(--primary))"
+            strokeWidth="2"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: 1.3 }}
+            style={{ opacity: 0.22 }}
+          />
+          {/* Dimension lines */}
+          <motion.line
+            x1="400"
+            y1="670"
+            x2="1040"
+            y2="670"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1"
+            strokeDasharray="640"
+            strokeDashoffset="640"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            style={{ opacity: 0.13 }}
+          />
+          <motion.line
+            x1="380"
+            y1="250"
+            x2="380"
+            y2="650"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1"
+            strokeDasharray="400"
+            strokeDashoffset="400"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 1, delay: 1.6 }}
+            style={{ opacity: 0.13 }}
+          />
+          {/* Section mark (circle + cross) */}
+          <motion.circle
+            cx="400"
+            cy="250"
+            r="18"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.5"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.7, delay: 1.8 }}
+            style={{ opacity: 0.18 }}
+          />
+          <motion.line
+            x1="400"
+            y1="232"
+            x2="400"
+            y2="268"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.5"
+            strokeDasharray="36"
+            strokeDashoffset="36"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 0.5, delay: 1.9 }}
+            style={{ opacity: 0.18 }}
+          />
+          <motion.line
+            x1="382"
+            y1="250"
+            x2="418"
+            y2="250"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.5"
+            strokeDasharray="36"
+            strokeDashoffset="36"
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 0.5, delay: 2 }}
+            style={{ opacity: 0.18 }}
+          />
+        </motion.svg>
+        {/* Enhanced overlay for better contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-transparent" />
+      </motion.div>
+      {/* Blueprint Dots Particle Canvas */}
+      <canvas
+        ref={particleRef}
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        aria-hidden
+      />
+      {/* Content */}
+      <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

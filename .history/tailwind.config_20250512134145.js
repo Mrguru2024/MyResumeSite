@@ -10,10 +10,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        'text-primary': 'hsl(var(--foreground))',
-        'text-secondary': 'hsl(var(--muted-foreground))',
+        background: {
+          dark: 'rgb(17, 24, 39)',
+          black: 'rgb(0, 0, 0)',
+        },
         text: {
+          primary: 'rgb(255, 255, 255)',
+          secondary: 'rgb(156, 163, 175)',
           accent: 'rgb(59, 130, 246)',
         },
         button: {
@@ -22,9 +25,9 @@ module.exports = {
           text: 'rgb(255, 255, 255)',
         },
         card: {
-          bg: 'hsl(var(--card))',
-          border: 'hsl(var(--border))',
-          hover: 'hsl(var(--card))',
+          bg: 'rgb(31, 41, 55)',
+          border: 'rgb(75, 85, 99)',
+          hover: 'rgb(55, 65, 81)',
         },
         skill: {
           fullstack: 'rgb(59, 130, 246)',

@@ -65,31 +65,8 @@
   .rotate-y-180 {
     transform: rotateY(180deg);
   }
-
-  .text-balance {
-    text-wrap: balance;
-  }
 }
 
-/* Custom scrollbar styles */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.8);
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
   touch-action: manipulation;
@@ -98,8 +75,6 @@ html {
 
 body {
   min-width: 0;
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
 }
 
 * {
@@ -135,24 +110,10 @@ body {
 }
 
 @media (max-width: 600px) {
-  main,
-  html,
-  body {
+  main, html, body {
     scroll-snap-type: none !important;
     -webkit-overflow-scrolling: touch;
   }
 }
 
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-/* Z Fold 4/5 folded size */
-@media (max-width: 280px) {
-  html {
-    font-size: 14px;
-  }
 }

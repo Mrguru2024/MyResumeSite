@@ -197,8 +197,8 @@ export default function Hero() {
   return (
     <section className="min-h-screen w-screen flex items-center justify-center relative pt-32 overflow-hidden bg-transparent">
       <HeroGlassParticles />
-      {/* Enhanced gradient overlay for ultra-smooth bottom transition in both themes */}
-      <div className="absolute bottom-0 left-0 w-full h-56 pointer-events-none z-10 bg-gradient-to-b from-transparent via-slate-100/80 to-white dark:to-background" />
+      {/* Gradient overlay for smooth bottom transition (dark and light theme) */}
+      <div className="absolute bottom-0 left-0 w-full h-32 pointer-events-none z-10 bg-gradient-to-b from-transparent to-slate-100/80 dark:to-background" />
       {/* Blueprint Dots Particle Canvas */}
       {/* Content */}
       <div
