@@ -1,23 +1,23 @@
-'use client';
-import Hero from '@/components/sections/Hero';
-import About from '@/components/sections/About';
-import Skills from '@/components/sections/Skills';
-import Experience from '@/components/sections/Experience';
-import Projects from '@/components/sections/Projects';
-import Portfolio from '@/components/sections/Portfolio';
-import BlueprintRoute from '@/components/ui/BlueprintRoute';
-import { motion } from 'framer-motion';
-import { ErrorBoundary } from 'react-error-boundary';
-import { useState } from 'react';
-import { ActiveSectionContext } from '@/context/ActiveSectionContext';
+"use client";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Skills from "@/components/sections/Skills";
+import Experience from "@/components/sections/Experience";
+import Projects from "@/components/sections/Projects";
+import Portfolio from "@/components/sections/Portfolio";
+import BlueprintRoute from "@/components/ui/BlueprintRoute";
+import { motion } from "framer-motion";
+import { ErrorBoundary } from "react-error-boundary";
+import { useState } from "react";
+import { ActiveSectionContext } from "@/context/ActiveSectionContext";
 
 // Debug imports
-console.log('Hero:', Hero);
-console.log('About:', About);
-console.log('Skills:', Skills);
-console.log('Experience:', Experience);
-console.log('Projects:', Projects);
-console.log('Portfolio:', Portfolio);
+console.log("Hero:", Hero);
+console.log("About:", About);
+console.log("Skills:", Skills);
+console.log("Experience:", Experience);
+console.log("Projects:", Projects);
+console.log("Portfolio:", Portfolio);
 
 function ErrorFallback({
   error,
@@ -30,7 +30,10 @@ function ErrorFallback({
     <div role="alert" className="p-4 bg-red-100 text-red-700 rounded">
       <p>Something went wrong:</p>
       <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary} className="mt-2 px-4 py-2 bg-red-500 text-white rounded">
+      <button
+        onClick={resetErrorBoundary}
+        className="mt-2 px-4 py-2 bg-red-500 text-white rounded"
+      >
         Try again
       </button>
     </div>
@@ -39,7 +42,7 @@ function ErrorFallback({
 
 export default function Home() {
   // Debug component rendering
-  console.log('Rendering Home component');
+  console.log("Rendering Home component");
 
   const [active, setActive] = useState(0);
 
@@ -106,9 +109,9 @@ export default function Home() {
               Contact Me
             </h2>
             <p className="text-lg text-text-secondary mb-8 text-center max-w-xl">
-              Ready to connect? I'm excited to discuss how my unique blend of tech and hands-on
-              skills can help your team succeed. Let's talk about your needs and how I can deliver
-              results.
+              Ready to connect? I'm excited to discuss how my unique blend of
+              tech and hands-on skills can help your team succeed. Let's talk
+              about your needs and how I can deliver results.
             </p>
             {/* Request Resume Download Form */}
             <div className="w-full max-w-lg bg-transparent backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/20 flex flex-col gap-6 mb-8">
@@ -116,10 +119,10 @@ export default function Home() {
                 Request a Downloadable Resume
               </h3>
               <form
-                onSubmit={e => {
+                onSubmit={(e) => {
                   e.preventDefault();
                   // TODO: handle download logic (show link or trigger download)
-                  alert('Resume download link would be provided here.');
+                  alert("Resume download link would be provided here.");
                 }}
                 autoComplete="off"
                 className="flex flex-col gap-5"

@@ -515,28 +515,6 @@ export default function BlueprintRoute() {
     <>
       <SoundToggle />
       <div className={styles.routeContainer} style={{ position: 'relative', zIndex: 1 }}>
-        {/* Electricity effect overlay for the plug marker */}
-        {lastMarkerPosition && lastSection && (
-          <div
-            style={{
-              position: 'fixed',
-              left: lastMarkerPosition.x,
-              top: lastMarkerPosition.y,
-              transform: 'translate(-50%, -50%)',
-              pointerEvents: 'none',
-              zIndex: 1001,
-            }}
-          >
-            <ElectricityEffect
-              x={MARKER_RADIUS * 1.5}
-              y={MARKER_RADIUS * 1.5}
-              radius={MARKER_RADIUS * 1.5}
-              color={lastSection.color}
-              intensity="high"
-              variation="spiral"
-            />
-          </div>
-        )}
         <svg
           ref={svgRef}
           role="img"
@@ -699,7 +677,7 @@ export default function BlueprintRoute() {
               }}
             />
           )}
-          {/* Render the plug marker and sparks last in the SVG for top layering */}
+          {/* Render the plug marker and electricity effect last in the SVG for top layering */}
           {lastMarkerPosition && lastSection && (
             <g
               tabIndex={0}
@@ -733,43 +711,23 @@ export default function BlueprintRoute() {
               }}
               style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             >
-              {/* Spark particles around the plug */}
-              {[...Array(8)].map((_, i) => {
-                const angle = (i / 8) * Math.PI * 2;
-                const r = MARKER_RADIUS * 1.9;
-                const cx = lastMarkerPosition.x + Math.cos(angle) * r;
-                const cy = lastMarkerPosition.y + Math.sin(angle) * r;
-                return (
-                  <motion.circle
-                    key={i}
-                    cx={cx}
-                    cy={cy}
-                    r={2.5}
-                    fill="#fffde4"
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{
-                      opacity: [0.7, 1, 0.7],
-                      scale: [0.7, 1.2, 0.7],
-                    }}
-                    transition={{
-                      duration: 1.2 + i * 0.1,
-                      repeat: Infinity,
-                      repeatType: 'loop',
-                      delay: i * 0.12,
-                    }}
-                    style={{ filter: 'drop-shadow(0 0 6px #fffde4)' }}
-                  />
-                );
-              })}
-              {/* Strong white halo for contrast */}
-              <circle
-                cx={lastMarkerPosition.x}
-                cy={lastMarkerPosition.y}
-                r={32}
-                fill="#fff"
-                opacity={0.7}
-                filter="url(#glow) blur(4px)"
-              />
+              {/* Electricity effect behind the plug */}
+              <foreignObject
+                x={lastMarkerPosition.x - MARKER_RADIUS * 1.5 * 2}
+                y={lastMarkerPosition.y - MARKER_RADIUS * 1.5 * 2}
+                width={MARKER_RADIUS * 3}
+                height={MARKER_RADIUS * 3}
+                style={{ pointerEvents: 'none' }}
+              >
+                <ElectricityEffect
+                  x={MARKER_RADIUS * 1.5}
+                  y={MARKER_RADIUS * 1.5}
+                  radius={MARKER_RADIUS * 1.5}
+                  color={lastSection.color}
+                  intensity="high"
+                  variation="spiral"
+                />
+              </foreignObject>
               {/* Plug marker */}
               <circle
                 cx={lastMarkerPosition.x}
@@ -778,8 +736,8 @@ export default function BlueprintRoute() {
                 fill="#fbbf24"
                 stroke="#fff"
                 strokeWidth={3}
-                opacity={1}
-                filter="drop-shadow(0 0 16px #fde047) drop-shadow(0 0 32px #fbbf24)"
+                filter="url(#glow) drop-shadow(0 0 40px #fbbf24) drop-shadow(0 0 32px #fde047)"
+                style={{ opacity: 1 }}
               />
               <rect
                 x={lastMarkerPosition.x - 10}
@@ -790,7 +748,6 @@ export default function BlueprintRoute() {
                 fill="#fff"
                 stroke="#fbbf24"
                 strokeWidth={2}
-                opacity={1}
               />
               <rect
                 x={lastMarkerPosition.x - 4}
@@ -799,7 +756,6 @@ export default function BlueprintRoute() {
                 height={8}
                 rx={1}
                 fill="#fbbf24"
-                opacity={1}
               />
               <rect
                 x={lastMarkerPosition.x + 1}
@@ -808,7 +764,6 @@ export default function BlueprintRoute() {
                 height={8}
                 rx={1}
                 fill="#fbbf24"
-                opacity={1}
               />
               <motion.polygon
                 points={`
@@ -822,7 +777,6 @@ export default function BlueprintRoute() {
                 fill="#fbbf24"
                 stroke="#f59e0b"
                 strokeWidth={0.7}
-                opacity={1}
                 animate={{
                   scale: [1, 1.15, 1],
                   opacity: [1, 0.7, 1],

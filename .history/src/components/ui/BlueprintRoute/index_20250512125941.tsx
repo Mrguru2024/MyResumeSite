@@ -792,24 +792,8 @@ export default function BlueprintRoute() {
                 strokeWidth={2}
                 opacity={1}
               />
-              <rect
-                x={lastMarkerPosition.x - 4}
-                y={lastMarkerPosition.y - 4}
-                width={3}
-                height={8}
-                rx={1}
-                fill="#fbbf24"
-                opacity={1}
-              />
-              <rect
-                x={lastMarkerPosition.x + 1}
-                y={lastMarkerPosition.y - 4}
-                width={3}
-                height={8}
-                rx={1}
-                fill="#fbbf24"
-                opacity={1}
-              />
+              <rect x={lastMarkerPosition.x - 4} y={lastMarkerPosition.y - 4} width={3} height={8} rx={1} fill="#fbbf24" opacity={1} />
+              <rect x={lastMarkerPosition.x + 1} y={lastMarkerPosition.y - 4} width={3} height={8} rx={1} fill="#fbbf24" opacity={1} />
               <motion.polygon
                 points={`
                   ${lastMarkerPosition.x},${lastMarkerPosition.y + 2}

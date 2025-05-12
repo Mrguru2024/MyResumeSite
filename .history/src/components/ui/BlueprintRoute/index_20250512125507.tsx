@@ -515,28 +515,6 @@ export default function BlueprintRoute() {
     <>
       <SoundToggle />
       <div className={styles.routeContainer} style={{ position: 'relative', zIndex: 1 }}>
-        {/* Electricity effect overlay for the plug marker */}
-        {lastMarkerPosition && lastSection && (
-          <div
-            style={{
-              position: 'fixed',
-              left: lastMarkerPosition.x,
-              top: lastMarkerPosition.y,
-              transform: 'translate(-50%, -50%)',
-              pointerEvents: 'none',
-              zIndex: 1001,
-            }}
-          >
-            <ElectricityEffect
-              x={MARKER_RADIUS * 1.5}
-              y={MARKER_RADIUS * 1.5}
-              radius={MARKER_RADIUS * 1.5}
-              color={lastSection.color}
-              intensity="high"
-              variation="spiral"
-            />
-          </div>
-        )}
         <svg
           ref={svgRef}
           role="img"
@@ -699,7 +677,7 @@ export default function BlueprintRoute() {
               }}
             />
           )}
-          {/* Render the plug marker and sparks last in the SVG for top layering */}
+          {/* Render the plug marker and electricity effect last in the SVG for top layering */}
           {lastMarkerPosition && lastSection && (
             <g
               tabIndex={0}
@@ -733,6 +711,17 @@ export default function BlueprintRoute() {
               }}
               style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             >
+              {/* Electricity effect directly at plug marker position */}
+              <g style={{ pointerEvents: 'none' }}>
+                <ElectricityEffect
+                  x={lastMarkerPosition.x}
+                  y={lastMarkerPosition.y}
+                  radius={MARKER_RADIUS * 1.5}
+                  color={lastSection.color}
+                  intensity="high"
+                  variation="spiral"
+                />
+              </g>
               {/* Spark particles around the plug */}
               {[...Array(8)].map((_, i) => {
                 const angle = (i / 8) * Math.PI * 2;

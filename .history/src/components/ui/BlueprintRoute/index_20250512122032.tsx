@@ -515,28 +515,6 @@ export default function BlueprintRoute() {
     <>
       <SoundToggle />
       <div className={styles.routeContainer} style={{ position: 'relative', zIndex: 1 }}>
-        {/* Electricity effect overlay for the plug marker */}
-        {lastMarkerPosition && lastSection && (
-          <div
-            style={{
-              position: 'fixed',
-              left: lastMarkerPosition.x,
-              top: lastMarkerPosition.y,
-              transform: 'translate(-50%, -50%)',
-              pointerEvents: 'none',
-              zIndex: 1001,
-            }}
-          >
-            <ElectricityEffect
-              x={MARKER_RADIUS * 1.5}
-              y={MARKER_RADIUS * 1.5}
-              radius={MARKER_RADIUS * 1.5}
-              color={lastSection.color}
-              intensity="high"
-              variation="spiral"
-            />
-          </div>
-        )}
         <svg
           ref={svgRef}
           role="img"
@@ -622,7 +600,7 @@ export default function BlueprintRoute() {
               );
             }
             if (i === markerPoints.length - 1) {
-              // Skip rendering the last marker here; it will be rendered last in the SVG below
+              // Skip rendering the last marker here; it will be rendered as an overlay below
               return null;
             }
             // Other markers
@@ -699,147 +677,6 @@ export default function BlueprintRoute() {
               }}
             />
           )}
-          {/* Render the plug marker and sparks last in the SVG for top layering */}
-          {lastMarkerPosition && lastSection && (
-            <g
-              tabIndex={0}
-              role="button"
-              aria-label={lastSection?.label || 'Milestone'}
-              onMouseEnter={() =>
-                setTooltip({
-                  show: true,
-                  x: lastMarkerPosition.x,
-                  y: lastMarkerPosition.y - 40,
-                  label: lastSection?.tooltip?.headline || lastSection?.label,
-                  description: lastSection?.tooltip?.blurb || lastSection?.description,
-                })
-              }
-              onMouseLeave={() => setTooltip(null)}
-              onFocus={() =>
-                setTooltip({
-                  show: true,
-                  x: lastMarkerPosition.x,
-                  y: lastMarkerPosition.y - 40,
-                  label: lastSection?.tooltip?.headline || lastSection?.label,
-                  description: lastSection?.tooltip?.blurb || lastSection?.description,
-                })
-              }
-              onBlur={() => setTooltip(null)}
-              onClick={() => {
-                play('markerClick');
-                document
-                  .getElementById(lastSection?.id?.toLowerCase())
-                  ?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
-            >
-              {/* Spark particles around the plug */}
-              {[...Array(8)].map((_, i) => {
-                const angle = (i / 8) * Math.PI * 2;
-                const r = MARKER_RADIUS * 1.9;
-                const cx = lastMarkerPosition.x + Math.cos(angle) * r;
-                const cy = lastMarkerPosition.y + Math.sin(angle) * r;
-                return (
-                  <motion.circle
-                    key={i}
-                    cx={cx}
-                    cy={cy}
-                    r={2.5}
-                    fill="#fffde4"
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{
-                      opacity: [0.7, 1, 0.7],
-                      scale: [0.7, 1.2, 0.7],
-                    }}
-                    transition={{
-                      duration: 1.2 + i * 0.1,
-                      repeat: Infinity,
-                      repeatType: 'loop',
-                      delay: i * 0.12,
-                    }}
-                    style={{ filter: 'drop-shadow(0 0 6px #fffde4)' }}
-                  />
-                );
-              })}
-              {/* Strong white halo for contrast */}
-              <circle
-                cx={lastMarkerPosition.x}
-                cy={lastMarkerPosition.y}
-                r={32}
-                fill="#fff"
-                opacity={0.7}
-                filter="url(#glow) blur(4px)"
-              />
-              {/* Plug marker */}
-              <circle
-                cx={lastMarkerPosition.x}
-                cy={lastMarkerPosition.y}
-                r={26}
-                fill="#fbbf24"
-                stroke="#fff"
-                strokeWidth={3}
-                opacity={1}
-                filter="drop-shadow(0 0 16px #fde047) drop-shadow(0 0 32px #fbbf24)"
-              />
-              <rect
-                x={lastMarkerPosition.x - 10}
-                y={lastMarkerPosition.y - 8}
-                width={20}
-                height={16}
-                rx={4}
-                fill="#fff"
-                stroke="#fbbf24"
-                strokeWidth={2}
-                opacity={1}
-              />
-              <rect
-                x={lastMarkerPosition.x - 4}
-                y={lastMarkerPosition.y - 4}
-                width={3}
-                height={8}
-                rx={1}
-                fill="#fbbf24"
-                opacity={1}
-              />
-              <rect
-                x={lastMarkerPosition.x + 1}
-                y={lastMarkerPosition.y - 4}
-                width={3}
-                height={8}
-                rx={1}
-                fill="#fbbf24"
-                opacity={1}
-              />
-              <motion.polygon
-                points={`
-                  ${lastMarkerPosition.x},${lastMarkerPosition.y + 2}
-                  ${lastMarkerPosition.x - 2},${lastMarkerPosition.y + 8}
-                  ${lastMarkerPosition.x + 1},${lastMarkerPosition.y + 8}
-                  ${lastMarkerPosition.x - 1},${lastMarkerPosition.y + 14}
-                  ${lastMarkerPosition.x + 4},${lastMarkerPosition.y + 7.5}
-                  ${lastMarkerPosition.x + 1.5},${lastMarkerPosition.y + 7.5}
-                `}
-                fill="#fbbf24"
-                stroke="#f59e0b"
-                strokeWidth={0.7}
-                opacity={1}
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [1, 0.7, 1],
-                  filter: [
-                    'drop-shadow(0 0 8px #fde047)',
-                    'drop-shadow(0 0 16px #fbbf24)',
-                    'drop-shadow(0 0 8px #fde047)',
-                  ],
-                }}
-                transition={{
-                  duration: 1.2,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-            </g>
-          )}
         </svg>
         {/* Tooltip overlay */}
         {tooltip?.show && (
@@ -862,6 +699,82 @@ export default function BlueprintRoute() {
           </div>
         )}
       </div>
+      {/* Overlay for the last marker and electricity effect */}
+      {lastMarkerPosition && lastSection && (
+        <div
+          style={{
+            position: 'fixed',
+            left: lastMarkerPosition.x,
+            top: lastMarkerPosition.y,
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1000,
+            pointerEvents: 'none',
+          }}
+        >
+          {/* Electricity effect always behind the plug */}
+          <div style={{ position: 'absolute', left: 0, top: 0, zIndex: 1 }}>
+            <ElectricityEffect
+              x={0}
+              y={0}
+              radius={MARKER_RADIUS * 1.5}
+              color={lastSection.color}
+              intensity="high"
+              variation="spiral"
+            />
+          </div>
+          {/* Plug marker always on top */}
+          <svg
+            width={80}
+            height={80}
+            style={{ position: 'relative', zIndex: 2, pointerEvents: 'auto' }}
+          >
+            <g>
+              <circle
+                cx={40}
+                cy={40}
+                r={26}
+                fill="#fbbf24"
+                stroke="#fff"
+                strokeWidth={3}
+                filter="url(#glow) drop-shadow(0 0 40px #fbbf24) drop-shadow(0 0 32px #fde047)"
+                style={{ opacity: 1 }}
+              />
+              <rect
+                x={30}
+                y={32}
+                width={20}
+                height={16}
+                rx={4}
+                fill="#fff"
+                stroke="#fbbf24"
+                strokeWidth={2}
+              />
+              <rect x={36} y={36} width={3} height={8} rx={1} fill="#fbbf24" />
+              <rect x={41} y={36} width={3} height={8} rx={1} fill="#fbbf24" />
+              <motion.polygon
+                points="40,42 38,48 41,48 39,54 44,47.5 41.5,47.5"
+                fill="#fbbf24"
+                stroke="#f59e0b"
+                strokeWidth={0.7}
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [1, 0.7, 1],
+                  filter: [
+                    'drop-shadow(0 0 8px #fde047)',
+                    'drop-shadow(0 0 16px #fbbf24)',
+                    'drop-shadow(0 0 8px #fde047)',
+                  ],
+                }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              />
+            </g>
+          </svg>
+        </div>
+      )}
       <Analytics />
     </>
   );
