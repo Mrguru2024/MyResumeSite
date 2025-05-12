@@ -1,0 +1,67 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
+export default function SoundToggle() {
+  const [isMuted, setIsMuted] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+    const stored = localStorage.getItem("blueprintroute-muted");
+    if (stored === "true") setIsMuted(true);
+  }, []);
+
+  const toggleMute = () => {
+    setIsMuted((prev) => {
+      const newState = !prev;
+      localStorage.setItem("blueprintroute-muted", newState ? "true" : "false");
+      return newState;
+    });
+  };
+
+  if (!hasMounted) return null;
+
+  return (
+    <button
+      onClick={toggleMute}
+      className="fixed top-4 left-4 z-[99999] bg-red-500 border-4 border-yellow-400 rounded-full p-4 shadow-2xl hover:scale-110 transition-transform"
+      style={{ position: 'fixed', zIndex: 99999 }}
+      aria-label={isMuted ? "Enable sound" : "Disable sound"}
+    >
+      {isMuted ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M11 5L6 9H2v6h4l5 4V5z" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+        </svg>
+      )}
+    </button>
+  );
+} 
